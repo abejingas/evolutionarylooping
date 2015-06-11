@@ -1,5 +1,5 @@
 from random import random, randint
-
+import logging
 
 class Individual(object):
 
@@ -39,6 +39,7 @@ class Individual(object):
 
     def get_y(self):
         if self.x_changed:
+            logging.info("Evaluating individual...")
             self.y = self.fitness_object.fitness(self.x)
         return self.y
 
