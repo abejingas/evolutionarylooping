@@ -8,7 +8,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 def run():
     logging.info("getting clip...")
-    clip = VideoFileClip("main/resources/hamac.mp4")
+    clip = VideoFileClip("src/main/resources/hamac.mp4")
     min_d = 1.5
     max_d = 3
     threshold = 50
@@ -36,8 +36,3 @@ def run():
                                    selector)
         logging.info("Best: {0}".format(population.generation.best()))
         generations += 1
-
-if __name__ == "__main__":
-    run()
-
-# TODO TEST rewrite individual evaluation
