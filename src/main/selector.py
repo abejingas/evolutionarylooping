@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod
 from math import ceil
 
-from src.main import generation
+from src.main.generation import Generation
 
 
 class Selector(object):
@@ -34,6 +34,6 @@ class TournamentSelector(Selector):
                     defeats += 1
             ranking.append((defeats, player1))
         ranking.sort()
-        selected_generation = generation()
+        selected_generation = Generation()
         selected_generation.individuals = [individual for defeats, individual in ranking[:self.max_population]]
         return selected_generation
