@@ -1,5 +1,6 @@
 from random import shuffle, choice, sample, uniform
 from copy import deepcopy
+import logging
 
 from src.main.generation import Generation
 from src.main.individual import Individual
@@ -63,7 +64,8 @@ class Population(object):
         # - individual length is in the min_d and max_d boundaries.
         # - individual's time codes are in the time codes of the whole clip.
         generation = Generation()
-        for _ in range(start_population):
+        for i in range(start_population):
+            logging.info("Generating population, individual {0}".format(i))
             t1 = uniform(0, fitness_object.clip.duration)
             t2 = t1 + uniform(min_d, max_d) * choice([-1, 1])
 
