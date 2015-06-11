@@ -1,4 +1,4 @@
-from moviepy.video.io.VideoFileClip import VideoFileClip
+import moviepy.editor as mpy
 from src.main.function import FrameDistance
 from src.main.population import Population
 from src.main.selector import TournamentSelector
@@ -8,7 +8,8 @@ logging.basicConfig(level=logging.DEBUG)
 
 def run():
     logging.info("getting clip...")
-    clip = VideoFileClip("src/main/resources/hamac.mp4").resize(width=150)
+    clip = mpy.VideoFileClip("src/main/resources/hamac.mp4")
+    clip = clip.resize(width=150)
     min_d = 1.5
     max_d = 3
     threshold = 50
