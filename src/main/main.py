@@ -29,21 +29,21 @@ def run():
 
     generations = 0
 
+    logging.info("starting...")
+
     # Run first generation without elitism
-    logging.info("Generation {0}".format(generations))
     population.next_generation(0, 0, recombination_percentage, mutation_percentage, selector)
     generations += 1
     best_value = population.generation.individuals[0].get_y()
-    logging.info(population.generation)
+    logging.info("Generation {0}: \n {1}".format(generations, population.generation))
 
     # Run next generations with elitism
     while generations < max_generations and best_value > threshold:
-        logging.info("Generation {0}".format(generations))
         population.next_generation(elites,
                                    elite_recombinations,
                                    recombination_percentage,
                                    mutation_percentage,
                                    selector)
-        logging.info(population.generation)
+        logging.info("Generation {0}: \n {1}".format(generations, population.generation))
         best_value = population.generation.individuals[0].get_y()
         generations += 1

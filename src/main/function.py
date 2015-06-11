@@ -25,4 +25,7 @@ class FrameDistance(object):
         if not self.min_d <= x[1] - x[0] <= self.max_d:
             # individual's duration out of wanted interaval
             return float("inf")
+        if x[1] > self.clip.duration or x[0] < 0:
+            # individual's time limits out of video's boundaries
+            return float("inf")
         return self._distance(x[0], x[1])
