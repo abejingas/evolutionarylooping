@@ -12,7 +12,7 @@ def run():
     clip = clip.resize(width=20)
     min_d = 1.5
     max_d = 3
-    threshold = 20
+    threshold = 170
     logging.info("creating fitness object...")
     fitness_object = FrameDistance(clip, min_d, max_d)
 
@@ -20,7 +20,7 @@ def run():
     elites = 2
     elite_recombinations = 0
     recombination_percentage = 0.7
-    mutation_percentage = 0.3
+    mutation_percentage = 0.8
     selector = TournamentSelector(start_population)
     max_generations = 1000
 
@@ -44,6 +44,12 @@ def run():
                                    recombination_percentage,
                                    mutation_percentage,
                                    selector)
-        logging.info("Generation {0}: \n {1}".format(generations, population.generation))
+        logging.info("Generation {0}: \n{1}".format(generations, population.generation))
         best_value = population.generation.individuals[0].get_y()
         generations += 1
+
+    for i in range(10):
+        population.next_final_generation(recombination_percentage, selector)
+        logging.info("Final Generation {0}: \n{1}".format(i, population.generation))
+
+    logging.info("Best individual: {0}".format(population.generation.individuals[0]))
