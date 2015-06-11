@@ -41,6 +41,7 @@ class Individual(object):
         if self.x_changed:
             logging.info("Evaluating individual...")
             self.y = self.fitness_object.fitness(self.x)
+            self.x_changed = False
         return self.y
 
     @staticmethod

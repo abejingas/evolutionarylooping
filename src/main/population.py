@@ -1,5 +1,4 @@
-from random import shuffle, choice, sample, uniform
-from copy import deepcopy
+from random import shuffle, choice, uniform
 import logging
 
 from src.main.generation import Generation
@@ -10,10 +9,10 @@ class Population(object):
 
     def __init__(self, start_population, fitness_object, min_d, max_d):
         self.generations = []
-        self.generation = self._generate(start_population,
-                                         fitness_object,
-                                         min_d,
-                                         max_d)
+        self.generation = Population._generate(start_population,
+                                               fitness_object,
+                                               min_d,
+                                               max_d)
         self.max_d = max_d
         self.generations.append(self.generation)
 
@@ -29,10 +28,6 @@ class Population(object):
                         recombination_percentage,
                         mutation_percentage,
                         selector):
-        # If we are working with elitism, sort parent generation - EVALUATION!
-        if elites > 0:
-            self.generation.individuals.sort()
-
         # Remove elites from parent generation
         elites = [self.generation.individuals.pop(0) for _ in range(elites)]
         # Recombine the parents to new children
@@ -54,13 +49,13 @@ class Population(object):
 
         self.generation = children
         self.generation.individuals.sort()
-        self.generations.append(deepcopy(self.generation))
+        # self.generations.append(deepcopy(self.generation))
 
     def next_final_generation(self, recombination_percentage, selector):
         children = self.generation.recombination(recombination_percentage)
         children = children.selection(selector)
         self.generation = children
-        self.generations.append(deepcopy(self.generation))
+        # self.generations.append(deepcopy(self.generation))
 
     def __str__(self):
         population = ""
@@ -68,7 +63,8 @@ class Population(object):
             population += str(p) + "\n\n"
         return population
 
-    def _generate(self, start_population, fitness_object, min_d, max_d):
+    @staticmethod
+    def _generate(start_population, fitness_object, min_d, max_d):
         generation = Generation()
         for i in range(start_population):
             logging.info("Generating population, individual {0}".format(i))
