@@ -32,8 +32,5 @@ class Generation(object):
     def get_median_individual(self):
         return self.individuals[(len(self.individuals) - 1) // 2]
 
-    def best(self):
-        return min(self.individuals)
-
     def __str__(self):
         return '\n'.join(str(i) for i in self.individuals)

@@ -33,6 +33,8 @@ def run():
     logging.info("Generation {0}".format(generations))
     population.next_generation(0, 0, recombination_percentage, mutation_percentage, selector)
     generations += 1
+    best_value = population.generation.individuals[0].get_y()
+    logging.info("Best: {0}".format(population.generation.individuals[0]))
 
     # Run next generations with elitism
     while generations < max_generations and best_value > threshold:
@@ -42,7 +44,6 @@ def run():
                                    recombination_percentage,
                                    mutation_percentage,
                                    selector)
-        # TODO evaluate
-        logging.info("Best: {0}".format(population.generation.best()))
-        best_value = population.generation.best().get_y()
+        logging.info("Best: {0}".format(population.generation.individuals[0]))
+        best_value = population.generation.individuals[0].get_y()
         generations += 1
