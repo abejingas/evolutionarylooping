@@ -8,7 +8,7 @@ logging.basicConfig(level=logging.DEBUG)
 
 def run():
     logging.info("getting clip...")
-    clip = VideoFileClip("src/main/resources/hamac.mp4")
+    clip = VideoFileClip("src/main/resources/hamac.mp4").resize(width=150)
     min_d = 1.5
     max_d = 3
     threshold = 50
