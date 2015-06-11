@@ -27,7 +27,13 @@ def run():
     population = Population(start_population, fitness_object, min_d, max_d)
 
     generations = 0
-    best_value = float("inf")
+
+    # Run first generation without elitism
+    logging.info("Generation {0}".format(generations))
+    population.next_generation(0, 0, recombination_percentage, mutation_percentage, selector)
+    generations += 1
+
+    # Run next generations with elitism
     while generations < max_generations and best_value > threshold:
         logging.info("Generation {0}".format(generations))
         population.next_generation(elites,
@@ -35,6 +41,7 @@ def run():
                                    recombination_percentage,
                                    mutation_percentage,
                                    selector)
+        # TODO evaluate
         logging.info("Best: {0}".format(population.generation.best()))
         best_value = population.generation.best().get_y()
         generations += 1

@@ -14,6 +14,7 @@ class Population(object):
                                          fitness_object,
                                          min_d,
                                          max_d)
+        self.max_d = max_d
         self.generations.append(self.generation)
 
     @staticmethod
@@ -28,18 +29,27 @@ class Population(object):
                         recombination_percentage,
                         mutation_percentage,
                         selector):
-        self.generation.individuals.sort()
+        # If we are working with elitism, sort parent generation - EVALUATION!
+        if elites > 0:
+            self.generation.individuals.sort()
 
+        # Remove elites from parent generation
         elites = [self.generation.individuals.pop(0) for _ in range(elites)]
+        # Recombine the parents to new children
         children = self.generation.recombination(recombination_percentage)
+        # Recombine the elites especially
         children.individuals.extend([
             elite.recombine(choice(self.generation.individuals))
             for _ in range(elite_recombinations)
             for elite in elites
         ])
+        # Put parents and children all into one generation (without elites)
         children.individuals.extend(self.generation.individuals)
+        # Select the lucky ones - EVALUATION!
         children = children.selection(selector)
-        children.mutation(mutation_percentage)
+        # Mutate some of them
+        children.mutation(mutation_percentage, self.max_d*2)
+        # Put the elites back into the child generation
         children.individuals.extend(elites)
 
         self.generation = children
@@ -59,10 +69,6 @@ class Population(object):
         return population
 
     def _generate(self, start_population, fitness_object, min_d, max_d):
-        # TODO update individual generation
-        # so that generated individuals satisfy the following conditions:
-        # - individual length is in the min_d and max_d boundaries.
-        # - individual's time codes are in the time codes of the whole clip.
         generation = Generation()
         for i in range(start_population):
             logging.info("Generating population, individual {0}".format(i))

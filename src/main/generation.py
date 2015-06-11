@@ -15,10 +15,10 @@ class Generation(object):
                 next_gen.individuals.append(child)
         return next_gen
 
-    def mutation(self, mutation_percentage):
+    def mutation(self, mutation_percentage, max_difference):
         for individual in self.individuals:
             if random() < mutation_percentage:
-                individual.mutate()
+                individual.mutate(max_difference)
 
     def selection(self, selector):
         return selector.select(self)

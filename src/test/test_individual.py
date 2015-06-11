@@ -87,4 +87,9 @@ class TestIndividual(TestCase):
 
     def test_get_y(self):
         i = Individual([2, 8], self.f)
+        self.assertIsNone(i.y)
         self.assertEqual(i.get_y(), 10)
+        i.x = [5, 9]
+        self.assertEqual(i.y, 10)
+        i.get_y()
+        self.assertEqual(i.y, 14)
