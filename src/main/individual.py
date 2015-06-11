@@ -39,7 +39,7 @@ class Individual(object):
 
     def get_y(self):
         if self.x_changed:
-            logging.info("Evaluating individual...")
+            logging.debug("Evaluating individual...")
             self.y = self.fitness_object.fitness(self.x)
             self.x_changed = False
         return self.y

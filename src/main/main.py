@@ -4,15 +4,15 @@ from src.main.population import Population
 from src.main.selector import TournamentSelector
 import logging
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 def run():
     logging.info("getting clip...")
     clip = mpy.VideoFileClip("src/main/resources/hamac.mp4")
-    clip = clip.resize(width=150)
+    clip = clip.resize(width=20)
     min_d = 1.5
     max_d = 3
-    threshold = 50
+    threshold = 20
     logging.info("creating fitness object...")
     fitness_object = FrameDistance(clip, min_d, max_d)
 
@@ -20,7 +20,7 @@ def run():
     elites = 2
     elite_recombinations = 0
     recombination_percentage = 0.7
-    mutation_percentage = 0.1
+    mutation_percentage = 0.3
     selector = TournamentSelector(start_population)
     max_generations = 1000
 
@@ -34,7 +34,7 @@ def run():
     population.next_generation(0, 0, recombination_percentage, mutation_percentage, selector)
     generations += 1
     best_value = population.generation.individuals[0].get_y()
-    logging.info("Best: {0}".format(population.generation.individuals[0]))
+    logging.info(population.generation)
 
     # Run next generations with elitism
     while generations < max_generations and best_value > threshold:
@@ -44,6 +44,6 @@ def run():
                                    recombination_percentage,
                                    mutation_percentage,
                                    selector)
-        logging.info("Best: {0}".format(population.generation.individuals[0]))
+        logging.info(population.generation)
         best_value = population.generation.individuals[0].get_y()
         generations += 1

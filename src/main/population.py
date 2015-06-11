@@ -67,7 +67,6 @@ class Population(object):
     def _generate(start_population, fitness_object, min_d, max_d):
         generation = Generation()
         for i in range(start_population):
-            logging.info("Generating population, individual {0}".format(i))
             t1 = uniform(0, fitness_object.clip.duration)
             t2 = t1 + uniform(min_d, max_d) * choice([-1, 1])
 
