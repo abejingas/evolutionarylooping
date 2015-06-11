@@ -27,6 +27,7 @@ class Individual(object):
             self.fitness_object
         )
 
+    # TODO make sure that the muatation doesn't screw up the duration time of the interval.
     def mutate(self, max_difference):
         for i in range(len(self.x)):
             if self.x[i] + max_difference > self.fitness_object.clip.duration:
