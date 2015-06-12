@@ -53,6 +53,7 @@ class Population(object):
 
     def next_final_generation(self, recombination_percentage, selector):
         children = self.generation.recombination(recombination_percentage)
+        children.individuals.extend(self.generation.individuals)
         children = children.selection(selector)
         self.generation = children
         # self.generations.append(deepcopy(self.generation))
