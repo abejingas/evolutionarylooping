@@ -27,10 +27,11 @@ class TestIndividual(TestCase):
 
     def test_mutate(self):
         m = Individual([0, 5], self.f)
-        for i in range(100):
+        for i in range(1000):
             m.mutate(20)
             self.assertTrue(self.f.min_d <= m.x[1] - m.x[0] <= self.f.max_d)
-            print(m)
+            self.assertTrue(0 <= m.x[0] < self.f.clip.duration - self.f.min_d)
+            self.assertTrue(self.f.min_d < m.x[1] <= self.f.clip.duration)
 
     def test_get_y(self):
         i = Individual([2, 8], self.f)

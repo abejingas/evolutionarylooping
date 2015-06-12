@@ -29,26 +29,6 @@ class Individual(object):
 
     # TODO make sure that the muatation doesn't screw up the duration time of the interval.
     def mutate(self, max_difference):
-    #     # help vars
-    #     duration = self.fitness_object.clip.duration
-    #     min_d = self.fitness_object.min_d
-    #     max_d = self.fitness_object.max_d
-    #     o = [0, 1]
-    #     shuffle(o)     # decide in which order the elements are touched
-    #
-    #     # mutate first element
-    #     self.x[o[0]] = Individual._push_into_border(self.x[o[0]], max_difference, duration)
-    #     self.x[o[0]] += uniform(-max_difference, max_difference)
-    #
-    #     # if the duration of the individual is out of range, mutate second element
-    #     if not min_d <= abs(self.x[o[1]] - self.x[o[0]]) <= max_d:
-    #         start = self.x[o[0]]
-    #         start -= Individual._push_into_border(self.x[o[0]], max_difference, duration)
-    #         self.x[o[1]] = start + uniform(min_d, max_d) * choice([-1, 1])
-    #     self.x.sort()
-    #     self.x_changed = True
-    #
-    # def mutate_new(self, max_difference):
         duration = self.fitness_object.clip.duration
         min_d = self.fitness_object.min_d
         max_d = self.fitness_object.max_d
