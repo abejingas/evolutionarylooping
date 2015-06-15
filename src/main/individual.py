@@ -27,7 +27,7 @@ class Individual(object):
             self.fitness_object
         )
 
-    # TODO make sure that the muatation doesn't screw up the duration time of the interval.
+    # TODO make random number follow the gaussian distribution. (See http://docs.scipy.org/doc/numpy/reference/generated/numpy.random.normal.html)
     def mutate(self, max_difference):
         duration = self.fitness_object.clip.duration
         min_d = self.fitness_object.min_d
