@@ -1,0 +1,69 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.5 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \sortlist{nty}{nty}
+    \entry{Darwin:1}{book}{}
+      \name{author}{1}{}{%
+        {{hash=d0e4f38206db228a7b870a49f6f52db2}{Darwin}{D\bibinitperiod}{Charles}{C\bibinitperiod}{}{}{}{}}%
+      }
+      \strng{namehash}{d0e4f38206db228a7b870a49f6f52db2}
+      \strng{fullhash}{d0e4f38206db228a7b870a49f6f52db2}
+      \field{sortinit}{D}
+      \field{sortinithash}{78f7c4753a2004675f316a80bdb31742}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{On the Origin of Species}
+      \field{year}{1859}
+      \verb{url}
+      \verb http://www.gutenberg.org/etext/15707
+      \endverb
+    \endentry
+    \entry{Mayr:1}{book}{}
+      \name{author}{1}{}{%
+        {{hash=cac50db2a50745fbffff26230282b557}{Mayr}{M\bibinitperiod}{Ernst}{E\bibinitperiod}{}{}{}{}}%
+      }
+      \list{publisher}{1}{%
+        {Harvard University Press}%
+      }
+      \strng{namehash}{cac50db2a50745fbffff26230282b557}
+      \strng{fullhash}{cac50db2a50745fbffff26230282b557}
+      \field{sortinit}{M}
+      \field{sortinithash}{2684bec41e9697b92699b46491061da2}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The Growth of Biological Thought}
+      \field{year}{1982}
+    \endentry
+    \entry{HubPlanner}{online}{}
+      \field{sortinit}{R}
+      \field{sortinithash}{c7387613477035a752d935acfc3e3ea2}
+      \field{labeltitlesource}{title}
+      \field{day}{4}
+      \field{month}{6}
+      \field{title}{Resource Planning Features}
+      \field{year}{2015}
+      \verb{url}
+      \verb http://hubplanner.com/features/
+      \endverb
+    \endentry
+  \endsortlist
+\endrefsection
+\endinput
+

@@ -1,0 +1,60 @@
+\chapter{Evolutionäre Algorithmen}
+Im Jahre 1859 veröffentlichte Darwin sein Hauptwerk "`On the Origin of Species"' ("`Über die Entstehung der Arten"') \cite{Darwin:1}, in welchem er die Beobachtung formuliert, dass sich alle Lebewesen in langen Zeiträumen verändern und ihrer Umgebung anpassen. Dieser Prozess basiert laut Darwins These auf den Prozessen der \textit{natürlichen Selektion}. Ernst Mayr fasste Darwins Evolutionstheorie folgendermaßen zusammen \cite{Mayr:1}: 
+
+\begin{enumerate}
+	\item Jede Art bringt so viele Nachkommen vor, dass die Population wachsen würde, wenn alle Nachkommen überlebten.
+	\item Die Populationsgröße einer Spezies ist langfristig konstant. 
+	\item Ressourcen, die die Art für das Überleben benötigt, stehen nur begrenzt, aber über die Zeit in gleichbleibenden Mengen zur Verfügung. 
+	\item Daraus folgt ein Kampf ums Überleben. 
+	\item Die Individuen einer Population unterscheiden sich deutlich voneinander. 
+	\item Die Unterschiede zwischen den Individuen beeinflussen ihre Fähigkeit in ihrer Umwelt zu überleben. 
+	\item Individuen, die weniger gut an ihre Umwelt angepasst sind, haben eine geringere Überlebenschance und weniger Nachkommen. Individuen, die besser an ihre Umwelt angepasst sind, haben eine höhere Überlebenschance und mehr Nachkommen.
+	\item Die Eigenschaften der Individuen mit einer höheren Überlebenschance verbreiten sich in der Population. Die Eigenschaften der Individuen mit einer geringeren Überlebenschance werden seltener vererbt und fallen damit aus der Population heraus. Dieser Prozess nennt sich natürliche Selektion. Dieser langsam voranschreitende Vorgang führt dazu, dass sich Populationen von Lebewesen sich über lange Zeitabschnitte an die Umwelt anpassen. 
+\end{enumerate}
+
+Dieser Evolutionsprozess kann auch als Optimierungsverfahren aufgefasst werden. Die Population verbessert ihre Überlebenschancen in ihrer Umwelt durch das Prinzip der natürlichen Selektion und strebt damit nach dem Individuum, das in seiner Umwelt am besten überleben kann und sich am besten fortpflanzen kann. Evolutionäre Algorithmen abstrahieren ebendiesen Prozess der Evolution und nutzen es zur Berechnung von Optimierungsproblemen. Das Vorgehen eines evolutionären Algorithmus wird am Beispiel des Minimierungsproblemes dargestellt:
+
+Wie bei den meisten Optimierungsproblemen müssen für ein Minimierungsproblem der Suchraum $\Omega$ und eine Bewertungsfunktion $f: \Omega \to \mathbb{R}$ gegeben sein. Gesucht wird die Menge der globalen Minimalpunkte $M$ mit
+
+\begin{equation}
+M = \{x \in \Omega | f(x) \leq f(x') \forall x' \in \Omega \}.
+\end{equation}
+
+Der evolutionäre Algorithmus startet mit einer Population einiger Individuen, die alle einen zufälligen Wert $g \in \Omega$ aus dem Suchraum enthalten. Dieser 
+
+Anschließend wird mit der Bewertungsfunktion $f$ die Fitness des Individuums bewertet. Jedes Individuum wird mit einem Partner versehen. Aus den zwei sogenannten Elternindividuen wird im nächsten Schritt ein Kind-Individuum erzeugt, das eine Kombination aus den Werten $g$ der Elternindividuen enthält. Die neue Generation
+
+Wie bei Optimierungsprobelemen üblich müssen ein Suchraum $\Omega$ (die Menge der möglichen Lösungen) und eine Bewertungsfunktion $f: \Omega \to \mathbb{R}$ definiert sein. Ein evolutionärer Algorithmus startet mit einer Population mit einigen Individuen, welchen ein zufälliger Wert $g \in \Omega$ aus dem Suchraum zugewiesen wird. 
+
+Ein evolutionärer Algorithmus erstellt zunächst einige Lösungskandidaten mit zufälligen Werten für das zu optimierende Problem. Zunächst wird für jeden Lösungskandidaten bestimmt, wie nah er am Optimum des Problemes ist. Anschließend wird jeder Lösungskandidat mit einem Partner versehen, um aus 
+
+Wie bei Optimierungsproblemen üblich müssen ein Lösungsraum $\Omega$ (die Menge der möglichen Lösungen) und eine Bewertungsfunktion $f: \Omega \to \mathbb{R}$ (auch Fitness- oder Zielfunktion genannt) definiert sein. 
+
+
+
+
+
+
+
+
+
+
+%Evolutionäre Algorithmen abstrahieren dieses Verfahren und nutzen es, um Probleme genau so zu optimieren, wie auch eine Population sich ihrer Umwelt anpasst. Wie bei Optimierungsproblemen sind ein Lösungsraum $\Omega$ (Die Menge der möglichen Lösungen) und eine Fitnessfunktion $f: \Omega \to \mathbb{R}$ (auch Bewertungs- oder Zielfunktion genannt). 
+
+\section{Das allgemeine Verfahren eines evolutionären Algorithmus}
+
+
+\subsection{Kodierung}
+Stub
+
+\subsection{Fitness}
+Stub
+
+\subsection{Selektion}
+Stub
+
+\subsection{Rekombination}
+Stub
+
+\subsection{Mutation}
+Stub

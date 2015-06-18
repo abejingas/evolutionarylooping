@@ -1,0 +1,69 @@
+\documentclass[bachelor,german]{hgbthesis}
+\graphicspath{{images/}}
+\bibliography{thesis}
+
+% include math libraries
+\usepackage{mathtools}
+\usepackage{amsfonts}
+
+
+% set line spacing
+\usepackage[onehalfspacing]{setspace}
+
+% set margins
+\usepackage{geometry}
+\geometry{a4paper, tmargin=25mm, bmargin=20mm, lmargin=30mm, rmargin=20mm}
+
+% set caption to left aligned, caption font size to 10.95pt
+\captionsetup[figure]{font=small, labelfont=bf, textfont=bf, justification=raggedright, singlelinecheck=false}
+
+% set footnotesize to 8pt
+\renewcommand{\footnotesize}{\scriptsize}
+
+% quotation
+\usepackage{epigraph}
+
+\setlength\parindent{0pt}
+
+\begin{document}
+
+\title{Konzeption und Implementierung eines Prototypen für ein Verleih- und Bereitstellungssystem von Hard- und Softwarekomponenten}
+
+\author{Leon Kellerhals}
+\anschrift{Holtzendorffstraße 7\\\hspace*{46mm}14057 Berlin}
+\seminargruppe{CS2012}
+\nummer{5000152}
+\studiengang{Computer Science}
+
+\studienort{Berufsakademie Sachsen\\Staatliche Studienakademie Leipzig}
+\abgabedatum{2015}{09}{01}
+
+\semester{Sommersemester 2015}
+
+\betreuer{Herr Dipl.-Ing. (FH) Clemens Daum}
+\betreuerfirma{mobilcom-debitel GmbH}
+\betreueranschrift{Ernst-Reuter-Platz 8\\\hspace*{46mm}10587 Berlin}
+
+\firmenTel{+49 30 39022 5418}
+\firmenUrl{www.mobilcom-debitel.de}
+
+\frontmatter
+\maketitle
+\tableofcontents
+
+\mainmatter
+
+\input{includes/preambel}
+\input{includes/ea}
+\input{includes/closure}
+
+
+\input{includes/acronyms}
+\input{includes/listoffigures}
+\MakeBibliography
+
+\erklaerungsseiteDe
+
+\appendix
+\input{includes/anhang}
+\end{document}
