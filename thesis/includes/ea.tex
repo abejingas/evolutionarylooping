@@ -12,7 +12,7 @@ Im Jahre 1859 veröffentlichte Darwin sein Hauptwerk "`On the Origin of Species"
 	\item Die Eigenschaften der Individuen mit einer höheren Überlebenschance verbreiten sich in der Population. Die Eigenschaften der Individuen mit einer geringeren Überlebenschance werden seltener vererbt und fallen damit aus der Population heraus. Dieser Prozess nennt sich natürliche Selektion. Dieser langsam voranschreitende Vorgang führt dazu, dass sich Populationen von Lebewesen sich über lange Zeitabschnitte an die Umwelt anpassen. 
 \end{enumerate}
 
-Dieser Evolutionsprozess kann auch als Optimierungsverfahren aufgefasst werden. Die Population verbessert ihre Überlebenschancen in ihrer Umwelt durch das Prinzip der natürlichen Selektion und strebt damit nach dem Individuum, das in seiner Umwelt am besten überleben kann und sich am besten fortpflanzen kann. Evolutionäre Algorithmen abstrahieren ebendiesen Prozess der Evolution und nutzen es zur Berechnung von Optimierungsproblemen. Das Vorgehen eines evolutionären Algorithmus wird am Beispiel des Minimierungsproblemes dargestellt:
+Dieser Evolutionsprozess kann auch als Optimierungsverfahren aufgefasst werden. Die Population verbessert ihre Überlebenschancen in ihrer Umwelt durch das Prinzip der natürlichen Selektion und strebt damit nach dem Individuum, das in seiner Umwelt am besten überleben kann und sich am besten fortpflanzen kann. Evolutionäre Algorithmen abstrahieren ebendiesen Prozess der Evolution und bedienen sich zusätzlich an den Prozessen der Rekombination und Mutation aus der Genetik, um Optimierungsprobleme 
 
 Wie bei den meisten Optimierungsproblemen müssen für ein Minimierungsproblem der Suchraum $\Omega$ und eine Bewertungsfunktion $f: \Omega \to \mathbb{R}$ gegeben sein. Gesucht wird die Menge der globalen Minimalpunkte $M$ mit
 
@@ -32,7 +32,14 @@ Wie bei Optimierungsproblemen üblich müssen ein Lösungsraum $\Omega$ (die Men
 
 
 
+%--- HASE ---%
+Im folgenden wird Darwins Evolutionstheorie anhand eines Beispiels aus \cite{Rabbits:1} erläutert. Es existiere eine Population von Hasen. Die einzelnen Hasen der Population haben unterschiedliche Eigenschaften: Einige sind schnell, andere sind langsam, manche sind schlau oder dumm. Diese Eigenschaften beeinflussen ihre Fähigkeiten, vor Füchsen (Man nehme an, dass diese auch existieren) zu fliehen. Dumme und langsame Hasen werden zu einer leichten Beute für Füchsen. Schnelle oder schlaue Hasen sind hingegen oft in der Lage, Füchsen zu entkommen, sei es, weil sie entweder schneller sind oder im richtigen Moment einen Haken schlagen, der ihnen einen großen Vorsprung verleiht. Da sie länger überleben oder (im falle des schlauen Hasen) besser Gefahr abschätzen können, sind sie öfter in der Lage, sich mit anderen Hasen zu paaren. Dumme Hasen merken hingegen unter Umständen nicht, dass ein Fuchs auf sie lauert und langsame Hasen entkommen dem Fuchs nicht. Jedoch können auch einige von ihnen überleben, sei es durch Glück. 
 
+Der Teil der Population, der überlebt hat, pflanzt sich nun fort. Dabei entsteht eine gute Mischung an Jungen: Langsame Hasen paaren sich mit schlauen Hasen, schnelle Hasen mit schnellen Hasen, dumme Hasen mit schnellen Hasen, und so weiter. Bei manchen Jungen werden die Eigenschaften, die durch Kombination der Eigenschaften der Eltern entstanden sind, noch mutiert, wodurch ein besonders schlauer, dummer oder schneller Hase erzeugt wird. Die erzeugten Hasenjungen werden durchschnittlich schneller und schlauer sein als die der ursprünglichen Population, da mehr der schlauen und schnellen Hasen der Elterngeneration überlebt haben und sich paaren konnten. Nach einigen Generationen wird dieser Effekt deutlich: Die gesamte Population der Hasen ist schneller und schlauer als die Hasen der ersten Generation. (Man könnte sich nun Sorgen um die Füchse machen, da die meisten Jagdversuche unerfolgreich sind. Jedoch untergehen Sie den gleichen Evolutionsprozess wie die Hasen und werden ebenfalls schneller und schlauer.)
+
+Evolutionäre Algorithmen (EA) kopieren das Verfahren der natürlichen Evolution, wobei das Verfahren stark vereinfacht wird. Im Gegenteil zu natürlicher Evolution verfolgen EA jedoch ein spezifisches \textit{Ziel}. Das Ziel ist meistens ein zu lösendes Problem. Der EA erzeugt dafür eine \textit{Population} von Lösungskandidaten. Jeder dieser Kandidaten oder \textit{Individuen} enthält die nötige Information um ihr Lösungsversuch für das Problem zu repräsentieren. Diese Information wird in den meisten Fällen Kodiert in \textid{Genen} gespeichert. Mit einer durch den Benutzer definierte \textit{Fitness-Funktion}
+
+%--- KEIN HASE ---%
 
 
 
