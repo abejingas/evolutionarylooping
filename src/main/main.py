@@ -12,7 +12,7 @@ def run():
     clip = clip.resize(width=20)
     min_d = 1.5
     max_d = 5
-    threshold = 100
+    threshold = 40
     logging.info("creating fitness object...")
     fitness_object = FrameDistance(clip, min_d, max_d)
 
@@ -22,7 +22,7 @@ def run():
     recombination_percentage = 0.7
     mutation_percentage = 0.8
     selector = TournamentSelector(start_population)
-    max_generations = 1000
+    max_generations = 50
 
     logging.info("generating population...")
     population = Population(start_population, fitness_object, min_d, max_d)
