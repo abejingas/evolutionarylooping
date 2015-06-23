@@ -14,3 +14,10 @@ class FitnessMocker(object):
 class ClipMocker(object):
     def __init__(self):
         self.duration = 100
+
+class FrameDistanceClipMocker(object):
+    def __init__(self):
+        self.fps = 30
+        self.duration = 100000
+        self.w = 300
+        self.h = 200

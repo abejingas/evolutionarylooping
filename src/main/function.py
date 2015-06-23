@@ -29,3 +29,26 @@ class FrameDistance(object):
             # individual's time limits out of video's boundaries
             return float("inf")
         return self._distance(x[0], x[1])
+
+class GeneticFrameDistance(FrameDistance):
+
+    def __init__(self, clip, min_d=None, max_d=None):
+        super().__init__(clip, min_d, max_d)
+        self.fps = self.clip.fps
+        self.min_f = int(self.min_d * self.fps)
+        self.max_f = int(self.max_d * self.fps)
+        self.frames = int(self.clip.duration * self.fps)
+
+    def gene_to_frames(self, gene):
+        # gene is a 48-bit BitArray.
+        n1 = gene[:32].uint     # f1 is first two thirds of BitArray
+        n2 = gene[32:].uint     # f2 is last third of BitArray
+        f1 = n1 % self.frames
+        f2 = n1 + self.min_d + (n2 % self.max_f)
+        t1 = f1 / self.fps
+        t2 = f2 / self.fps
+        return [t1, t2]
+
+    def fitness(self, x):
+        x = self.gene_to_frames(x)
+        return super().fitness(x)
