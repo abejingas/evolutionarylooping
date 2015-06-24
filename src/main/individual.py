@@ -1,5 +1,7 @@
 from random import random, randint, shuffle, uniform, choice
+from bitstring import BitArray
 import logging
+import numpy as np
 
 class Individual(object):
 
@@ -19,7 +21,7 @@ class Individual(object):
         :return: The child individual.
         """
         if not weight:
-            weight = 0.5 * random() + 0.25
+            weight = np.random.normal(0.5, 0.5)
         elif not 0 <= weight <= 1:
             raise ValueError("Weight must be between 0 and 1")
         return Individual(
@@ -27,7 +29,6 @@ class Individual(object):
             self.fitness_object
         )
 
-    # TODO make random number follow the gaussian distribution. (See http://docs.scipy.org/doc/numpy/reference/generated/numpy.random.normal.html)
     def mutate(self, max_difference):
         duration = self.fitness_object.clip.duration
         min_d = self.fitness_object.min_d
@@ -77,3 +78,26 @@ class Individual(object):
 
     def __str__(self):
         return 'x: [' + (', '.join(map(str, self.x))) + '], y: ' + str(self.get_y())
+
+# TODO override methods for GeneticIndividual
+class GeneticIndividual(Individual):
+
+    def recombine(self, partner, k = None):
+        """
+        Exercise a crossover between this individual and the partner.
+        Example:
+        Parents:    0 1 1 0 1 (self)
+                    0 0 1 1 0 (partner)
+        Cross-Site:      |
+        Child:      0 1 1 1 0
+        :param partner: The partner
+        :param k:       The Cross-Site
+        :return:        The new individual
+        """
+        l = self.fitness_object.clip.duration
+        k = randint(1, l - 1) if k is None or not (1 <= k <= l - 1) else k
+        return Individual(self.x[:k] + partner.x[k-l:], self.fitness_object)
+
+    def mutate(self, b = None):
+        b = randint(0, len(self.x)-1) if b is None or not (0 < b < len(self.x)) else b
+        self.x.invert(b)

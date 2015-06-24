@@ -37,3 +37,20 @@ class TournamentSelector(Selector):
         selected_generation = Generation()
         selected_generation.individuals = [individual for defeats, individual in ranking[:self.max_population]]
         return selected_generation
+
+class ParentSelector(Selector):
+    """
+    The ParentSelector is a selector to be used before recombining the individuals.
+    It uses the roulette wheel method for biasing the mating pool in favour of the fitter individuals.
+    """
+
+    def __init__(self, max_population):
+        self.max_population = max_population
+
+    def select(self, generation):
+        ind_sum = sum([1/i.get_y() for i in generation.individuals])
+        generation.individuals.sort()
+        probabilities = [0]
+        for i in generation.individuals[:-1]:
+            probabilities.append(probabilities[-1] + (1/i.get_y()))
+        # TODO wip

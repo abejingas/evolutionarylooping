@@ -44,7 +44,7 @@ class GeneticFrameDistance(FrameDistance):
         n1 = gene[:32].uint     # f1 is first two thirds of BitArray
         n2 = gene[32:].uint     # f2 is last third of BitArray
         f1 = n1 % self.frames
-        f2 = n1 + self.min_d + (n2 % self.max_f)
+        f2 = f1 + self.min_f + (n2 % self.max_f)
         t1 = f1 / self.fps
         t2 = f2 / self.fps
         return [t1, t2]
