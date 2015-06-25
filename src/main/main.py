@@ -1,6 +1,6 @@
-from src.main.function import FrameDistance
-from src.main.population import Population
-from src.main.selector import TournamentSelector
+from src.main.function import FrameDistance, GeneticFrameDistance
+from src.main.population import Population, GeneticPopulation
+from src.main.selector import TournamentSelector, ParentSelector
 import moviepy.editor as mpy
 import logging
 
@@ -76,3 +76,50 @@ class LoopingGifFinder(object):
     def results_to_gif(self, prefix):
         for i in range(10):
             self.clip.subclip(*self.population.generation.individuals[i].x).write_gif("{0}_{1}.gif".format(prefix, i))
+
+class GeneticGifFinder(object):
+
+    def __init__(self,
+                 clip,
+                 min_d = 1,
+                 max_d = 10,
+                 threshold = 40,
+                 max_gen = 50,
+                 popsize = 20,
+                 mutation_rate = 0.001):
+        self.clip = mpy.VideoFileClip(clip).resize(width=20)
+        self.min_d = min_d
+        self.max_d = max_d
+        self.threshold = threshold
+        self.max_gen = max_gen
+        self.popsize = popsize
+        self.mutation_rate = mutation_rate
+        self.f = GeneticFrameDistance(self.clip, self.min_d, self.max_d)
+        self.selector = ParentSelector(self.popsize)
+
+    def run(self):
+        logging.info("generating population...")
+        self.population = GeneticPopulation(self.popsize, self.f)
+        generations = 0
+        logging.info("starting...")
+
+        # Run first generation without elitism
+        self.population.next_generation(self.mutation_rate, self.selector)
+        logging.info("Generation {0}: \n {1}".format(generations, self.population.generation))
+        best_value = self.population.generation.individuals[0].get_y()
+        generations += 1
+
+        while generations < self.max_gen and best_value > self.threshold:
+            self.population.next_generation(self.mutation_rate, self.selector)
+            logging.info("Generation {0}: \n{1}".format(generations, self.population.generation))
+            best_value = self.population.generation.individuals[0].get_y()
+            generations += 1
+
+        logging.info("Best clips: \n{0}".format(self.population.generation))
+
+    def results_to_gif(self, prefix):
+        for i in range(10):
+            self.clip.subclip(
+                self.f.gene_to_frames(
+                    *self.population.generation.individuals[i].x)
+            ).write_gif("{0}_{1}.gif".format(prefix, i))

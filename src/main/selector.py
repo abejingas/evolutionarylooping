@@ -1,8 +1,9 @@
 from abc import ABCMeta, abstractmethod
 from math import ceil
-
 from src.main.generation import Generation
-
+import numpy as np
+from random import random
+from bisect import bisect_left
 
 class Selector(object):
     __metaclass__ = ABCMeta
@@ -49,8 +50,12 @@ class ParentSelector(Selector):
 
     def select(self, generation):
         ind_sum = sum([1/i.get_y() for i in generation.individuals])
-        generation.individuals.sort()
-        probabilities = [0]
-        for i in generation.individuals[:-1]:
-            probabilities.append(probabilities[-1] + (1/i.get_y()))
-        # TODO wip
+        p = [1/i.get_y()/ind_sum for i in generation.individuals]
+        p_cum = np.cumsum(p)[:-1]
+
+        mating_pool = Generation()
+        for i in range(self.max_population):
+            index = bisect_left(p_cum, random())
+            mating_pool.individuals.append(generation.individuals[index])
+
+        return mating_pool

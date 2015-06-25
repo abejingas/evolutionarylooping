@@ -34,3 +34,15 @@ class Generation(object):
 
     def __str__(self):
         return '\n'.join(str(i) for i in self.individuals)
+
+class GeneticGeneration(Generation):
+
+    def recombination(self, mates):
+        next_gen = Generation()
+        for i in mates.individuals:
+            next_gen.append(i.recombine(choice(self.individuals)))
+
+    def mutation(self, mutation_rate):
+        for i in self.individuals:
+            i.mutate(mutation_rate)
+

@@ -1,4 +1,6 @@
+from random import randint
 import numpy as np
+from bitstring import BitArray
 
 class FrameDistance(object):
 
@@ -52,3 +54,6 @@ class GeneticFrameDistance(FrameDistance):
     def fitness(self, x):
         x = self.gene_to_frames(x)
         return super().fitness(x)
+
+    def generate_gene(self):
+        return BitArray("uint:48={0}".format(randint(0, 2**48-1)))

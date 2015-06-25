@@ -78,3 +78,24 @@ class Population(object):
                 Individual(sorted([t1, t2]), fitness_object)
             )
         return generation
+
+class GeneticPopulation(object):
+
+    def __init__(self, popsize, f):
+        self.generations = []
+        self.generation = GeneticPopulation._generate(popsize, f)
+        self.generations.append(self.generation)
+
+    def next_generation(self, mutation_rate, selector):
+        mates = selector.select(self.generation)
+        children = self.generation.recombination(mates)
+        children.mutation(mutation_rate)
+        self.generation = children
+        self.generation.individuals.sort()
+
+    @staticmethod
+    def _generate(popsize, f):
+        generation = Generation()
+        for i in range(popsize):
+            generation.individuals.append(Individual(f.generate_gene(), f))
+        return generation

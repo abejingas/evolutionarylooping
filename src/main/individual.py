@@ -98,6 +98,14 @@ class GeneticIndividual(Individual):
         k = randint(1, l - 1) if k is None or not (1 <= k <= l - 1) else k
         return Individual(self.x[:k] + partner.x[k-l:], self.fitness_object)
 
-    def mutate(self, b = None):
-        b = randint(0, len(self.x)-1) if b is None or not (0 < b < len(self.x)) else b
-        self.x.invert(b)
+    # def mutate(self, b = None):
+    #     b = randint(0, len(self.x)-1) if b is None or not (0 < b < len(self.x)) else b
+    #     self.x.invert(b)
+
+    def mutate(self, mutation_rate = 0.001):
+        for i in range(len(self.x)):
+            if random() < mutation_rate:
+                self.x.invert(i)
+
+    def __str__(self):
+        return "x: {0}, y: {1}".format(self.x.bin, self.get_y())
