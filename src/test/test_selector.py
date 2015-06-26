@@ -1,7 +1,5 @@
 from unittest import TestCase
 
-__author__ = 'Leon'
-
 
 class TestParentSelector(TestCase):
 

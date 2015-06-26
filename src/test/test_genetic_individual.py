@@ -3,6 +3,7 @@ from bitstring import BitArray
 from src.main.individual import GeneticIndividual
 from src.test.helpers import GeneticFitnessMocker
 
+
 class TestGeneticIndividual(TestCase):
 
     def setUp(self):

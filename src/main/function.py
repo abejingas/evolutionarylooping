@@ -3,16 +3,17 @@ from random import randint
 import numpy as np
 from bitstring import BitArray
 
+
 class FrameDistance(object):
 
-    def __init__(self, clip, min_d = None, max_d = None):
+    def __init__(self, clip, min_d=None, max_d=None):
         self.clip = clip
         self.N_pixels = clip.w * clip.h * 3
         self.min_d = min_d if min_d else 1
         self.max_d = max_d if max_d else 10
 
-    def _dot_product(self, F1, F2):
-        return (F1*F2).sum()/self.N_pixels
+    def _dot_product(self, f1, f2):
+        return (f1*f2).sum()/self.N_pixels
 
     def _distance(self, t1, t2):
         f1 = self.clip.get_frame(t1)
@@ -33,6 +34,7 @@ class FrameDistance(object):
             return float("inf")
         return self._distance(x[0], x[1])
 
+
 class GeneticFrameDistance(FrameDistance):
 
     def __init__(self, clip, min_d=None, max_d=None):
@@ -49,7 +51,7 @@ class GeneticFrameDistance(FrameDistance):
         n1 = gene[:32].uint     # f1 is first two thirds of BitArray
         n2 = gene[32:].uint     # f2 is last third of BitArray
         f1 = n1 % self.frames
-        f2 = f1 + self.min_f + (n2 % self.max_f)
+        f2 = f1 + self.min_f + (n2 % (self.max_f-self.min_f))
         t1 = f1 / self.fps
         t2 = f2 / self.fps
         return [t1, t2]
@@ -58,5 +60,6 @@ class GeneticFrameDistance(FrameDistance):
         x = self.gene_to_frames(x)
         return super().fitness(x)
 
-    def generate_gene(self):
+    @staticmethod
+    def generate_gene():
         return BitArray("uint:48={0}".format(randint(0, 2**48-1)))

@@ -6,19 +6,20 @@ import logging
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s %(message)s')
 
+
 class LoopingGifFinder(object):
 
     def __init__(self,
                  clip,
-                 min_d = None,
-                 max_d = None,
-                 threshold = None,
-                 max_gen = None,
-                 popsize = None,
-                 elites = None,
-                 elite_recombinations = None,
-                 recombination_rate = None,
-                 mutation_rate = None):
+                 min_d=None,
+                 max_d=None,
+                 threshold=None,
+                 max_gen=None,
+                 popsize=None,
+                 elites=None,
+                 elite_recombinations=None,
+                 recombination_rate=None,
+                 mutation_rate=None):
         self.clip = mpy.VideoFileClip(clip).resize(width=20)
         self.min_d = 1.5 if min_d is None else min_d
         self.max_d = 5 if max_d is None else max_d
@@ -31,6 +32,7 @@ class LoopingGifFinder(object):
         self.mutation_rate = 0.8 if mutation_rate is None else mutation_rate
         self.fitness_object = FrameDistance(self.clip, self.min_d, self.max_d)
         self.selector = TournamentSelector(self.popsize)
+        self.population = None
 
         logging.info("Parameters: \n" +
                      "\tmin_d:                  {0}\n".format(self.min_d) +
@@ -77,6 +79,7 @@ class LoopingGifFinder(object):
         for i in range(10):
             self.clip.subclip(*self.population.generation.individuals[i].x).write_gif("{0}_{1}.gif".format(prefix, i))
 
+
 class GeneticGifFinder(object):
 
     def __init__(self,
@@ -86,7 +89,8 @@ class GeneticGifFinder(object):
                  threshold=None,
                  max_gen=None,
                  popsize=None,
-                 mutation_rate=None):
+                 mutation_rate=None,
+                 elites=None):
         self.clip = mpy.VideoFileClip(clip).resize(width=20)
         self.min_d = 1 if min_d is None else min_d
         self.max_d = 5 if max_d is None else max_d
@@ -94,6 +98,7 @@ class GeneticGifFinder(object):
         self.max_gen = 50 if max_gen is None else max_gen
         self.popsize = 20 if popsize is None else popsize
         self.mutation_rate = 0.001 if mutation_rate is None else mutation_rate
+        self.elites = 1 if mutation_rate is None else elites
         self.f = GeneticFrameDistance(self.clip, self.min_d, self.max_d)
         self.selector = ParentSelector(self.popsize)
         self.population = None
@@ -111,7 +116,7 @@ class GeneticGifFinder(object):
         generations += 1
 
         while generations < self.max_gen and best_value > self.threshold:
-            self.population.next_generation(self.mutation_rate, self.selector)
+            self.population.next_generation(self.mutation_rate, self.selector, self.elites)
             logging.info("Generation {0}: \n{1}".format(generations, self.population.generation))
             best_value = self.population.generation.individuals[0].get_y()
             generations += 1

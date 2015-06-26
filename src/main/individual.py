@@ -1,7 +1,7 @@
 from random import random, randint, shuffle, uniform, choice
-from bitstring import BitArray
 import logging
 import numpy as np
+
 
 class Individual(object):
 
@@ -25,7 +25,7 @@ class Individual(object):
         elif not 0 <= weight <= 1:
             raise ValueError("Weight must be between 0 and 1")
         return Individual(
-            [(1-weight) * self.x[i] + weight * partner.x[i] for i in range(len(self.x))],
+            [(1 - weight) * self.x[i] + weight * partner.x[i] for i in range(len(self.x))],
             self.fitness_object
         )
 
@@ -79,8 +79,8 @@ class Individual(object):
     def __str__(self):
         return 'x: [' + (', '.join(map(str, self.x))) + '], y: ' + str(self.get_y())
 
-class GeneticIndividual(Individual):
 
+class GeneticIndividual(Individual):
     def recombine(self, partner, k=None):
         """
         Exercise a crossover between this individual and the partner.
@@ -93,13 +93,9 @@ class GeneticIndividual(Individual):
         :param k:       The Cross-Site
         :return:        The new individual
         """
-        # l = int(self.fitness_object.clip.duration)
         l = len(self.x)
         k = randint(1, l - 1) if k is None or not (1 <= k <= l - 1) else k
-        parta = self.x[:k]
-        partb = partner.x[k-l:]
-        newgene = parta + partb
-        return GeneticIndividual(newgene, self.fitness_object)
+        return GeneticIndividual(self.x[:k] + partner.x[k - l:], self.fitness_object)
 
     # def mutate(self, b = None):
     #     b = randint(0, len(self.x)-1) if b is None or not (0 < b < len(self.x)) else b

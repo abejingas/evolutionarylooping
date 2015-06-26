@@ -23,9 +23,12 @@ class Generation(object):
     def selection(self, selector):
         return selector.select(self)
 
-    def retrieve_partner(self, partner):
+    def retrieve_partner(self, partner, mates=None):
+        if mates is None:
+            mates = self
+
         while True:
-            individual = choice(self.individuals)
+            individual = choice(mates.individuals)
             if partner is not individual:
                 return individual
 
@@ -40,10 +43,10 @@ class GeneticGeneration(Generation):
     def recombination(self, mates):
         next_gen = GeneticGeneration()
         for i in mates.individuals:
-            next_gen.individuals.append(i.recombine(choice(self.individuals)))
+            # next_gen.individuals.append(i.recombine(choice(self.individuals)))
+            next_gen.individuals.append(i.recombine(self.retrieve_partner(i)))
         return next_gen
 
     def mutation(self, mutation_rate):
         for i in self.individuals:
             i.mutate(mutation_rate)
-

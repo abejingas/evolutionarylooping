@@ -2,7 +2,7 @@ from unittest import TestCase
 from src.main.function import GeneticFrameDistance
 from src.test.helpers import FrameDistanceClipMocker
 from bitstring import BitArray
-__author__ = 'Leon'
+
 
 class TestGeneticFrameDistance(TestCase):
 

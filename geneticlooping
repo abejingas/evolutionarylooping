@@ -1,5 +1,6 @@
 #!/usr/bin/env python3.4
 
+
 from sys import path
 path.append('src')
 
@@ -13,7 +14,8 @@ if __name__ == "__main__":
     parser.add_argument('-g', '--max_gen', type=int, help='maximum generations')
     parser.add_argument('-p', '--popsize', type=int, help='the population size')
     parser.add_argument('-m', '--mutation_rate', type=float, help='the mutation rate to use')
-    parser.add_argument('-o', '--output', help='file prefix for output gifs')
+    parser.add_argument('-e', '--elites', type=int, help='the amount of elites')
+    parser.add_argument('-o', '--output', help='file prefix for output GIFs')
     parser.add_argument('clip', help='the video clip you want to analyse')
     args = parser.parse_args()
 
@@ -24,10 +26,11 @@ if __name__ == "__main__":
         args.threshold,
         args.max_gen,
         args.popsize,
-        args.mutation_rate
+        args.mutation_rate,
+        args.elites
     )
 
     lgf.run()
 
-    if (args.output is not None):
+    if args.output is not None:
         lgf.results_to_gif(args.output)

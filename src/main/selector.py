@@ -5,6 +5,7 @@ import numpy as np
 from random import random
 from bisect import bisect_left
 
+
 class Selector(object):
     __metaclass__ = ABCMeta
 
@@ -15,7 +16,7 @@ class Selector(object):
 
 class TournamentSelector(Selector):
 
-    def __init__(self, max_population, tournament_rounds = None):
+    def __init__(self, max_population, tournament_rounds=None):
         self.max_population = max_population
         if not tournament_rounds:
             self.tournament_rounds = int(ceil(max_population * 0.2))
@@ -38,6 +39,7 @@ class TournamentSelector(Selector):
         selected_generation = Generation()
         selected_generation.individuals = [individual for defeats, individual in ranking[:self.max_population]]
         return selected_generation
+
 
 class ParentSelector(Selector):
     """
