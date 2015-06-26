@@ -1,3 +1,4 @@
+import logging
 from random import randint
 import numpy as np
 from bitstring import BitArray
@@ -25,7 +26,7 @@ class FrameDistance(object):
 
     def fitness(self, x):
         if not self.min_d <= x[1] - x[0] <= self.max_d:
-            # individual's duration out of wanted interaval
+            # individual's duration out of wanted interval
             return float("inf")
         if x[1] > self.clip.duration or x[0] < 0:
             # individual's time limits out of video's boundaries
@@ -42,6 +43,8 @@ class GeneticFrameDistance(FrameDistance):
         self.frames = int(self.clip.duration * self.fps)
 
     def gene_to_frames(self, gene):
+        if gene.__class__.__name__ == 'list':
+            logging.info("debug!")
         # gene is a 48-bit BitArray.
         n1 = gene[:32].uint     # f1 is first two thirds of BitArray
         n2 = gene[32:].uint     # f2 is last third of BitArray

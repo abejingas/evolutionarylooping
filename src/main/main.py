@@ -81,21 +81,22 @@ class GeneticGifFinder(object):
 
     def __init__(self,
                  clip,
-                 min_d = 1,
-                 max_d = 10,
-                 threshold = 40,
-                 max_gen = 50,
-                 popsize = 20,
-                 mutation_rate = 0.001):
+                 min_d=None,
+                 max_d=None,
+                 threshold=None,
+                 max_gen=None,
+                 popsize=None,
+                 mutation_rate=None):
         self.clip = mpy.VideoFileClip(clip).resize(width=20)
-        self.min_d = min_d
-        self.max_d = max_d
-        self.threshold = threshold
-        self.max_gen = max_gen
-        self.popsize = popsize
-        self.mutation_rate = mutation_rate
+        self.min_d = 1 if min_d is None else min_d
+        self.max_d = 5 if max_d is None else max_d
+        self.threshold = 40 if threshold is None else threshold
+        self.max_gen = 50 if max_gen is None else max_gen
+        self.popsize = 20 if popsize is None else popsize
+        self.mutation_rate = 0.001 if mutation_rate is None else mutation_rate
         self.f = GeneticFrameDistance(self.clip, self.min_d, self.max_d)
         self.selector = ParentSelector(self.popsize)
+        self.population = None
 
     def run(self):
         logging.info("generating population...")
@@ -105,7 +106,7 @@ class GeneticGifFinder(object):
 
         # Run first generation without elitism
         self.population.next_generation(self.mutation_rate, self.selector)
-        logging.info("Generation {0}: \n {1}".format(generations, self.population.generation))
+        logging.info("Generation {0}: \n{1}".format(generations, self.population.generation))
         best_value = self.population.generation.individuals[0].get_y()
         generations += 1
 

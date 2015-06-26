@@ -38,9 +38,10 @@ class Generation(object):
 class GeneticGeneration(Generation):
 
     def recombination(self, mates):
-        next_gen = Generation()
+        next_gen = GeneticGeneration()
         for i in mates.individuals:
-            next_gen.append(i.recombine(choice(self.individuals)))
+            next_gen.individuals.append(i.recombine(choice(self.individuals)))
+        return next_gen
 
     def mutation(self, mutation_rate):
         for i in self.individuals:

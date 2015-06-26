@@ -1,8 +1,8 @@
 from random import shuffle, choice, uniform
 import logging
 
-from src.main.generation import Generation
-from src.main.individual import Individual
+from src.main.generation import Generation, GeneticGeneration
+from src.main.individual import Individual, GeneticIndividual
 
 
 class Population(object):
@@ -82,9 +82,7 @@ class Population(object):
 class GeneticPopulation(object):
 
     def __init__(self, popsize, f):
-        self.generations = []
         self.generation = GeneticPopulation._generate(popsize, f)
-        self.generations.append(self.generation)
 
     def next_generation(self, mutation_rate, selector):
         mates = selector.select(self.generation)
@@ -95,7 +93,7 @@ class GeneticPopulation(object):
 
     @staticmethod
     def _generate(popsize, f):
-        generation = Generation()
+        generation = GeneticGeneration()
         for i in range(popsize):
-            generation.individuals.append(Individual(f.generate_gene(), f))
+            generation.individuals.append(GeneticIndividual(f.generate_gene(), f))
         return generation

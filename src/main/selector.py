@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
 from math import ceil
-from src.main.generation import Generation
+from src.main.generation import Generation, GeneticGeneration
 import numpy as np
 from random import random
 from bisect import bisect_left
@@ -53,7 +53,7 @@ class ParentSelector(Selector):
         p = [1/i.get_y()/ind_sum for i in generation.individuals]
         p_cum = np.cumsum(p)[:-1]
 
-        mating_pool = Generation()
+        mating_pool = GeneticGeneration()
         for i in range(self.max_population):
             index = bisect_left(p_cum, random())
             mating_pool.individuals.append(generation.individuals[index])

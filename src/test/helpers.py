@@ -10,6 +10,18 @@ class FitnessMocker(object):
     def fitness(self, x):
         return sum(x)
 
+class GeneticFitnessMocker(object):
+    def __init__(self):
+        self.clip = ClipMocker()
+        self.min_d = 1
+        self.max_d = 10
+        self.min_f = 30
+        self.max_f = 300
+        self.fps = 30
+        self.frames = self.clip.duration * self.fps
+
+    def fitness(self, x):
+        return x.int
 
 class ClipMocker(object):
     def __init__(self):
