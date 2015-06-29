@@ -104,7 +104,9 @@ class GeneticIndividual(Individual):
     def mutate(self, mutation_rate=0.001):
         for i in range(self.fitness_object.len_g):
             if random() < mutation_rate:
-                self.x ^= (1 << i)
+                new_x = self.x ^ (1 << i)
+                logging.info("Mutating\n{0} to\n{1}:".format(bin(self.x), bin(new_x)))
+                self.x = new_x
 
     def __str__(self):
         return "x: {0}, y: {1}".format(bin(self.x), self.get_y())
