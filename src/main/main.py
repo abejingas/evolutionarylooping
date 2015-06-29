@@ -127,6 +127,5 @@ class GeneticGifFinder(object):
     def results_to_gif(self, prefix):
         for i in range(10):
             self.clip.subclip(
-                self.f.gene_to_frames(
-                    self.population.generation.individuals[i].x)
+                *self.f.gene_to_frames(self.population.generation.individuals[i].x)
             ).write_gif("{0}_{1}.gif".format(prefix, i))
