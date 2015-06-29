@@ -122,10 +122,11 @@ class GeneticGifFinder(object):
             generations += 1
 
         logging.info("Best clips: \n{0}".format(self.population.generation))
+        logging.info("Everything that happened: \n{0}".format(self.population.generations))
 
     def results_to_gif(self, prefix):
         for i in range(10):
             self.clip.subclip(
                 self.f.gene_to_frames(
-                    *self.population.generation.individuals[i].x)
+                    self.population.generation.individuals[i].x)
             ).write_gif("{0}_{1}.gif".format(prefix, i))

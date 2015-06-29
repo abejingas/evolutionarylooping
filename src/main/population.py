@@ -82,6 +82,7 @@ class GeneticPopulation(object):
 
     def __init__(self, popsize, f):
         self.generation = GeneticPopulation._generate(popsize, f)
+        self.generations = [self.generation.to_dict()]
 
     def next_generation(self, mutation_rate, selector, elites=0):
         elites = [self.generation.individuals.pop(0) for _ in range(elites)]
@@ -91,6 +92,7 @@ class GeneticPopulation(object):
         children.individuals.extend(elites)
         self.generation = children
         self.generation.individuals.sort()
+        self.generations.append(self.generation.to_dict())
 
     @staticmethod
     def _generate(popsize, f):
