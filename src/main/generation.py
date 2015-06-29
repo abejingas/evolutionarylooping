@@ -53,5 +53,14 @@ class GeneticGeneration(Generation):
         for i in self.individuals:
             i.mutate(mutation_rate)
 
+    def retrieve_partner(self, partner, mates=None):
+        if mates is None:
+            mates = self
+
+        while True:
+            individual = choice(mates.individuals)
+            if partner.x != individual.x:
+                return individual
+
     def to_dict(self):
         return [{'x': bin(i.x), 'y': i.y} for i in self.individuals]
