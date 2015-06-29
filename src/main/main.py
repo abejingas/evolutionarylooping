@@ -111,13 +111,13 @@ class GeneticGifFinder(object):
 
         # Run first generation without elitism
         self.population.next_generation(self.mutation_rate, self.selector)
-        logging.info("Generation {0}: \n{1}".format(generations, self.population.generation))
+        logging.info("Generation {0}: \n{1}\n".format(generations, self.population.generation))
         best_value = self.population.generation.individuals[0].get_y()
         generations += 1
 
         while generations < self.max_gen and best_value > self.threshold:
             self.population.next_generation(self.mutation_rate, self.selector, self.elites)
-            logging.info("Generation {0}: \n{1}".format(generations, self.population.generation))
+            logging.info("Generation {0}: \n{1}\n".format(generations, self.population.generation))
             best_value = self.population.generation.individuals[0].get_y()
             generations += 1
 

@@ -21,6 +21,7 @@ class GeneticFitnessMocker(object):
         self.max_f = 300
         self.fps = 30
         self.frames = self.clip.duration * self.fps
+        self.len_g = 48
 
     @staticmethod
     def fitness(x):

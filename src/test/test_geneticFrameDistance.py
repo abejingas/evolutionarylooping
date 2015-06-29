@@ -31,3 +31,4 @@ class TestGeneticFrameDistance(TestCase):
         frames = gfd.gene_to_frames(0b000111100011100100110101000011100100100110001101)
         self.assertAlmostEqual(frames[0], 2187.1333, delta=1e-04)
         self.assertAlmostEqual(frames[1], 2194.7667, delta=1e-04)
+        print(gfd.gene_to_frames(0))

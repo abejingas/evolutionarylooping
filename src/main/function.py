@@ -1,7 +1,6 @@
 import logging
 from random import randint
 import numpy as np
-from bitstring import BitArray
 
 
 class FrameDistance(object):
@@ -27,10 +26,12 @@ class FrameDistance(object):
 
     def fitness(self, x):
         if not self.min_d <= x[1] - x[0] <= self.max_d:
-            # individual's duration out of wanted interval
+            # individual's duration not in wanted interval
+            logging.warning("Individual out of duration bounds: {0}".format(x))
             return float("inf")
         if x[1] > self.clip.duration or x[0] < 0:
             # individual's time limits out of video's boundaries
+            logging.warning("Individual out of video's bounds: {0}".format(x))
             return float("inf")
         return self._distance(x[0], x[1])
 
@@ -64,4 +65,4 @@ class GeneticFrameDistance(FrameDistance):
 
     @staticmethod
     def generate_gene():
-        return BitArray("uint:48={0}".format(randint(0, 2**48-1)))
+        return randint(0, 2**48-1)

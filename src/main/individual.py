@@ -86,25 +86,25 @@ class GeneticIndividual(Individual):
         Exercise a crossover between this individual and the partner.
         Example:
         Parents:    0 1 1 0 1 (self)
-                    0 0 1 1 0 (partner)
+                    1 0 1 1 0 (partner)
         Cross-Site:      |
         Child:      0 1 1 1 0
         :param partner: The partner
-        :param k:       The Cross-Site
+        :param k:       The Cross-Site (index right to left)
         :return:        The new individual
         """
-        l = len(self.x)
+        l = self.fitness_object.len_g
         k = randint(1, l - 1) if k is None or not (1 <= k <= l - 1) else k
-        return GeneticIndividual(self.x[:k] + partner.x[k - l:], self.fitness_object)
 
-    # def mutate(self, b = None):
-    #     b = randint(0, len(self.x)-1) if b is None or not (0 < b < len(self.x)) else b
-    #     self.x.invert(b)
+        c1 = (self.x >> k)
+        c2 = partner.x & 2**k - 1
+        c = (c1 << k) | c2
+        return GeneticIndividual(c, self.fitness_object)
 
     def mutate(self, mutation_rate=0.001):
-        for i in range(len(self.x)):
+        for i in range(self.fitness_object.len_g):
             if random() < mutation_rate:
-                self.x.invert(i)
+                self.x ^= (1 << i)
 
     def __str__(self):
-        return "x: {0}, y: {1}".format(self.x.bin, self.get_y())
+        return "x: {0}, y: {1}".format(bin(self.x), self.get_y())

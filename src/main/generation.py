@@ -46,7 +46,6 @@ class GeneticGeneration(Generation):
     def recombination(self, mates):
         next_gen = GeneticGeneration()
         for i in mates.individuals:
-            # next_gen.individuals.append(i.recombine(choice(self.individuals)))
             next_gen.individuals.append(i.recombine(self.retrieve_partner(i)))
         return next_gen
 
@@ -55,4 +54,4 @@ class GeneticGeneration(Generation):
             i.mutate(mutation_rate)
 
     def to_dict(self):
-        return [{'x': i.x.bin, 'y': i.y} for i in self.individuals]
+        return [{'x': bin(i.x), 'y': i.y} for i in self.individuals]
