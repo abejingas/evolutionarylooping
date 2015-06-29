@@ -43,13 +43,15 @@ class GeneticFrameDistance(FrameDistance):
         self.min_f = int(self.min_d * self.fps)
         self.max_f = int(self.max_d * self.fps)
         self.frames = int(self.clip.duration * self.fps)
+        self.len_g = 48
+        self.len_x = 32
+        self.len_y = 16
 
     def gene_to_frames(self, gene):
         if gene.__class__.__name__ == 'list':
             logging.info("debug!")
-        # gene is a 48-bit BitArray.
-        n1 = gene[:32].uint     # f1 is first two thirds of BitArray
-        n2 = gene[32:].uint     # f2 is last third of BitArray
+        n1 = gene >> (self.len_g - self.len_x)
+        n2 = gene & (2**self.len_y - 1)
         f1 = n1 % self.frames
         f2 = f1 + self.min_f + (n2 % (self.max_f-self.min_f))
         t1 = f1 / self.fps
