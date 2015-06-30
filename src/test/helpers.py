@@ -39,3 +39,17 @@ class FrameDistanceClipMocker(object):
         self.duration = 100000
         self.w = 300
         self.h = 200
+
+class IndividualMocker(object):
+    def __init__(self, x = 0, y = 0):
+        self.x = x
+        self.y = y
+
+    def get_y(self):
+        return self.y
+
+    def __lt__(self, other):
+        return self.y < other.y
+
+    def __str__(self):
+        return "x: {0}, y: {1}".format(self.x, self.y)

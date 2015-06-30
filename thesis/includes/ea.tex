@@ -18,23 +18,49 @@ Der Teil der Population, der überlebt hat, pflanzt sich nun fort. Dabei entsteh
 
 Evolutionäre Algorithmen (EA) kopieren das Verfahren der natürlichen Evolution, wobei das Verfahren stark vereinfacht wird. Im Gegenteil zu natürlicher Evolution verfolgen EA jedoch ein spezifisches \textit{Ziel}. Das Ziel ist meistens ein zu lösendes Problem. Der EA erzeugt dafür eine \textit{Population} von Lösungskandidaten. Jeder dieser Kandidaten oder \textit{Individuen} enthält die nötige Information um ihren Lösungsversuch für das Problem zu repräsentieren. Diese Information wird in den meisten Fällen Kodiert in \textit{Genen} gespeichert. Mit einer vom Benutzer erstellen \textit{Fitness-Funktion} kann für jedes Individuum der \textit{Fitness-Wert} - die Qualität des Individuums für das gegebene Problem - bestimmt werden. Für den Paarungsprozess werden zunächst \textit{Eltern} ausgewählt, die in den Paarungs-Pool aufgenommen werden (dieser Schritt nennt sich \textit{Eltern-Selektion}). Aus dem Paarungs-Pool werden zwei Eltern ausgewählt, um \textit{rekombiniert} zu werden. Bei der \textit{Rekombination} wird ein Kind-Individuum erzeugt, das auch einen Lösungskandidat für das Problem repräsentiert. Die Kinder-Individuen stellen die Individuen der \textit{nächsten Generation} dar. Einige Individuen der neuen Generation werden zufällig ausgewählt, um \textit{mutiert} zu werden. In diesem Schritt werden einige Gene des Individuums zufällig geändert, um eine zusätzliche Vielfalt in der Population zu erreichen. Die meisten evolutionären Algorithmen arbeiten mit einer \textit{festen Populationsgröße}. Daher werden im Schritt der \textit{Umwelt-Selektion} die Individuen mit den besten Fitness-Werten aus der Eltern- und der Kind-Generation ausgewählt. Alle anderen Individuen werden entfernt. 
 
-Damit der EA schnell auf eine günstige Lösung trifft, muss er auf das Problem abgestimmt werden. Dafür kann man verschiedene Ver
-Ein EA 
+Mit der Zeit haben sich verschiedene Methoden für die Implementierung eines EA entwickelt, um bestimmte Probleme besser lösen zu können. Nur die generelle Struktur des Algorithmus ist meistens die gleiche. % TODO siehe Abbildung 
 
-\section{Das allgemeine Verfahren eines evolutionären Algorithmus}
+Im folgenden werden die Terminologie von evolutionären Algorithmen sowie die verschiedenen Verfahren in den Abschnitten von EA vorgestellt. 
 
+\section{Terminologie}
+% TODO
+TODO
 
-\subsection{Kodierung}
+\section{Kodierung}
+Um ein Optimierungsproblem mit einem evolutionären Algorithmus zu lösen, wird meist eine Übersetzung des Suchraums des Problems benötigt. Diese Übersetzung gleicht dem Genotyp-Phaenotyp-Modell aus der Genetik. Der Wert, der im Individuum gespeichert wird, ist der Genotyp. Damit lässt sich mit Hilfe der Kodierung der Phaenotyp berechnen. Der Phaenotyp stellt einen Lösungskandidaten für das Optimierungsproblem bzw. einen Wert aus dem Suchraum des Optimierungsproblem dar. Es muss also ein Alphabet erstellt werden, das durch den Kodierungsprozess einen Wert im Suchraum des Optimierungsproblems darstellt. 
+
+Das Alphabet kann dabei beliebig aufgebaut sein. Zwei Prinzipien sollten bei der Konstruktion des Alphabets beachtet werden. 
+Der Benutzer muss die Kodierung so wählen, dass kurze 
+
+\subsection{Binäre Kodierung}
+Bei der binären Kodierung wird der Lösungsraum durch eine binäre Zahlenkette $b = \mathbb{B}^k = {0, 1}^k$ repräsentiert. 
+
+\subsection{Relle Kodierung}
 Stub
 
-\subsection{Fitness}
+\section{Fitnessfunktion}
 Stub
 
-\subsection{Selektion}
+\section{Selektion}
 Stub
 
-\subsection{Rekombination}
+\subsection{Plus-Selektion}
 Stub
 
-\subsection{Mutation}
+\subsection{Komma-Selektion}
+Stub
+
+\subsection{Turnier-Selektion}
+Stub
+
+\subsection{Roulette-Selektion}
+Stub
+
+\section{Mutation}
+Stub
+
+\section{Elitismus}
+Stub
+
+\section{Terminierungskriterien}
 Stub

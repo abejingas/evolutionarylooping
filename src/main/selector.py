@@ -53,6 +53,10 @@ class ParentSelector(Selector):
     def select(self, generation):
         ind_sum = sum([1/i.get_y() for i in generation.individuals])
         p = [1/i.get_y()/ind_sum for i in generation.individuals]
+        debug = zip(generation.individuals, p)
+        for i, p in debug:
+            print("{0} -> {1}%".format(str(i), 100*p))
+        
         p_cum = np.cumsum(p)[:-1]
 
         mating_pool = GeneticGeneration()
