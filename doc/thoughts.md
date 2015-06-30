@@ -8,23 +8,39 @@ Aus dem Buch: Gerdes, I.; Klawonn, F.; Kruse, R: Evolutionare Algorithmen. 1. Au
 - Die Bestandteile des Algorithmus (Mutation, Rekombination, Fitness etc.) als Pseudocode erläutern
 
 # Aufzug des Kapitels "Evolutionäre Algorithmen"
-1. Optimierungsverfahren
-    - Zielstellung
-    - Zitat?
-    - Mathematische Erläuterung der Optimierungsverfahren
-2. Biologische Evolution
-    - Darwin
-    - Erkenntnisse von Darwin
-3. Evolutionäre Algorithmen
-    - Künstliche Evolution
-    - Mathematische Darstellung
-    1. Kodierungsverfahren
-        - Binärkodierung
-        - Reelle Kodierung
-    2. Bewertungsfunktion
-    3. Selektion
-        - Elternselektion
-        - Umweltselektion
-    4. Rekombination
-    5. Mutation
-    6. Kleines Beispiel anhand einer einfachen Funktion? (Wenn ja, zum Schluss)
+- Einführung: Darwin, Hase
+- Temrinologie
+    - popsize
+    - Population
+    - Generation
+    - Individuum
+    - Gen
+    - etc.
+- Kodierung
+    - Binär
+    - Reell
+- Fitnessfunktion
+    - Darstellung der Güte als reelle Zahl
+    - Minimierung / Maximierung
+- Selektion
+    - Umwelt- / Elternselektion
+    - Soll die nächste Generation Individuen der Elterngeneration enthalten?
+    - deterministisch / non-deterministisch
+    - Turnier, Roulette, Plus, Komma
+- Rekombination
+    - 1-point- / 2-point-crossover
+    - arithmetische Rekombination
+    - etc.
+- Mutation
+    - Zufällige Modifizierung eines Individuums
+    - Mutationsrate und Mutationsdruck davon abhängig, wie nah die Kodierung des Problemes am eigentlichen Problem ist. 
+    - Addition eines zufälligen Werts (normal verteilt)
+    - Zufällige Änderung / Invertierung / Verschiebung von Bits
+- Elitismus
+    - Beibehalten des besten Individuums
+    - Wird dann benötigt, wenn Eltern-Individuen nicht in die nächste Generation übernommen werden oder wenn keine deterministische Umweltselektion auf die Eltern ausgeführt wird. 
+- Terminierungsbedingungen
+    - Maximale Anzahl an Generationen
+    - Zeit
+    - Gütekriterium erfüllt
+    - Keine Verbesserung in den letzten Generationen

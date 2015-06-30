@@ -12,43 +12,14 @@ Im Jahre 1859 veröffentlichte Darwin sein Hauptwerk "`On the Origin of Species"
 	\item Die Eigenschaften der Individuen mit einer höheren Überlebenschance verbreiten sich in der Population. Die Eigenschaften der Individuen mit einer geringeren Überlebenschance werden seltener vererbt und fallen damit aus der Population heraus. Dieser Prozess nennt sich natürliche Selektion. Dieser langsam voranschreitende Vorgang führt dazu, dass sich Populationen von Lebewesen sich über lange Zeitabschnitte an die Umwelt anpassen. 
 \end{enumerate}
 
-Dieser Evolutionsprozess kann auch als Optimierungsverfahren aufgefasst werden. Die Population verbessert ihre Überlebenschancen in ihrer Umwelt durch das Prinzip der natürlichen Selektion und strebt damit nach dem Individuum, das in seiner Umwelt am besten überleben kann und sich am besten fortpflanzen kann. Evolutionäre Algorithmen abstrahieren ebendiesen Prozess der Evolution und bedienen sich zusätzlich an den Prozessen der Rekombination und Mutation aus der Genetik, um Optimierungsprobleme 
-
-Wie bei den meisten Optimierungsproblemen müssen für ein Minimierungsproblem der Suchraum $\Omega$ und eine Bewertungsfunktion $f: \Omega \to \mathbb{R}$ gegeben sein. Gesucht wird die Menge der globalen Minimalpunkte $M$ mit
-
-\begin{equation}
-M = \{x \in \Omega | f(x) \leq f(x') \forall x' \in \Omega \}.
-\end{equation}
-
-Der evolutionäre Algorithmus startet mit einer Population einiger Individuen, die alle einen zufälligen Wert $g \in \Omega$ aus dem Suchraum enthalten. Dieser 
-
-Anschließend wird mit der Bewertungsfunktion $f$ die Fitness des Individuums bewertet. Jedes Individuum wird mit einem Partner versehen. Aus den zwei sogenannten Elternindividuen wird im nächsten Schritt ein Kind-Individuum erzeugt, das eine Kombination aus den Werten $g$ der Elternindividuen enthält. Die neue Generation
-
-Wie bei Optimierungsprobelemen üblich müssen ein Suchraum $\Omega$ (die Menge der möglichen Lösungen) und eine Bewertungsfunktion $f: \Omega \to \mathbb{R}$ definiert sein. Ein evolutionärer Algorithmus startet mit einer Population mit einigen Individuen, welchen ein zufälliger Wert $g \in \Omega$ aus dem Suchraum zugewiesen wird. 
-
-Ein evolutionärer Algorithmus erstellt zunächst einige Lösungskandidaten mit zufälligen Werten für das zu optimierende Problem. Zunächst wird für jeden Lösungskandidaten bestimmt, wie nah er am Optimum des Problemes ist. Anschließend wird jeder Lösungskandidat mit einem Partner versehen, um aus 
-
-Wie bei Optimierungsproblemen üblich müssen ein Lösungsraum $\Omega$ (die Menge der möglichen Lösungen) und eine Bewertungsfunktion $f: \Omega \to \mathbb{R}$ (auch Fitness- oder Zielfunktion genannt) definiert sein. 
-
-
-
-%--- HASE ---%
 Im folgenden wird Darwins Evolutionstheorie anhand eines Beispiels aus \cite{Rabbits:1} erläutert. Es existiere eine Population von Hasen. Die einzelnen Hasen der Population haben unterschiedliche Eigenschaften: Einige sind schnell, andere sind langsam, manche sind schlau oder dumm. Diese Eigenschaften beeinflussen ihre Fähigkeiten, vor Füchsen (Man nehme an, dass diese auch existieren) zu fliehen. Dumme und langsame Hasen werden zu einer leichten Beute für Füchsen. Schnelle oder schlaue Hasen sind hingegen oft in der Lage, Füchsen zu entkommen, sei es, weil sie entweder schneller sind oder im richtigen Moment einen Haken schlagen, der ihnen einen großen Vorsprung verleiht. Da sie länger überleben oder (im falle des schlauen Hasen) besser Gefahr abschätzen können, sind sie öfter in der Lage, sich mit anderen Hasen zu paaren. Dumme Hasen merken hingegen unter Umständen nicht, dass ein Fuchs auf sie lauert und langsame Hasen entkommen dem Fuchs nicht. Jedoch können auch einige von ihnen überleben, sei es durch Glück. 
 
 Der Teil der Population, der überlebt hat, pflanzt sich nun fort. Dabei entsteht eine gute Mischung an Jungen: Langsame Hasen paaren sich mit schlauen Hasen, schnelle Hasen mit schnellen Hasen, dumme Hasen mit schnellen Hasen, und so weiter. Bei manchen Jungen werden die Eigenschaften, die durch Kombination der Eigenschaften der Eltern entstanden sind, noch mutiert, wodurch ein besonders schlauer, dummer oder schneller Hase erzeugt wird. Die erzeugten Hasenjungen werden durchschnittlich schneller und schlauer sein als die der ursprünglichen Population, da mehr der schlauen und schnellen Hasen der Elterngeneration überlebt haben und sich paaren konnten. Nach einigen Generationen wird dieser Effekt deutlich: Die gesamte Population der Hasen ist schneller und schlauer als die Hasen der ersten Generation. (Man könnte sich nun Sorgen um die Füchse machen, da die meisten Jagdversuche unerfolgreich sind. Jedoch untergehen Sie den gleichen Evolutionsprozess wie die Hasen und werden ebenfalls schneller und schlauer.)
 
 Evolutionäre Algorithmen (EA) kopieren das Verfahren der natürlichen Evolution, wobei das Verfahren stark vereinfacht wird. Im Gegenteil zu natürlicher Evolution verfolgen EA jedoch ein spezifisches \textit{Ziel}. Das Ziel ist meistens ein zu lösendes Problem. Der EA erzeugt dafür eine \textit{Population} von Lösungskandidaten. Jeder dieser Kandidaten oder \textit{Individuen} enthält die nötige Information um ihren Lösungsversuch für das Problem zu repräsentieren. Diese Information wird in den meisten Fällen Kodiert in \textit{Genen} gespeichert. Mit einer vom Benutzer erstellen \textit{Fitness-Funktion} kann für jedes Individuum der \textit{Fitness-Wert} - die Qualität des Individuums für das gegebene Problem - bestimmt werden. Für den Paarungsprozess werden zunächst \textit{Eltern} ausgewählt, die in den Paarungs-Pool aufgenommen werden (dieser Schritt nennt sich \textit{Eltern-Selektion}). Aus dem Paarungs-Pool werden zwei Eltern ausgewählt, um \textit{rekombiniert} zu werden. Bei der \textit{Rekombination} wird ein Kind-Individuum erzeugt, das auch einen Lösungskandidat für das Problem repräsentiert. Die Kinder-Individuen stellen die Individuen der \textit{nächsten Generation} dar. Einige Individuen der neuen Generation werden zufällig ausgewählt, um \textit{mutiert} zu werden. In diesem Schritt werden einige Gene des Individuums zufällig geändert, um eine zusätzliche Vielfalt in der Population zu erreichen. Die meisten evolutionären Algorithmen arbeiten mit einer \textit{festen Populationsgröße}. Daher werden im Schritt der \textit{Umwelt-Selektion} die Individuen mit den besten Fitness-Werten aus der Eltern- und der Kind-Generation ausgewählt. Alle anderen Individuen werden entfernt. 
 
-Die einzelnen Individuum können mit Hilfe einer vom Benutzer definierten \textit{Fitness-Funktion} bewertet werden. Damit wird die natürliche Selektion der Individuen ermöglicht. 
-
-%--- KEIN HASE ---%
-
-
-
-
-
-
-%Evolutionäre Algorithmen abstrahieren dieses Verfahren und nutzen es, um Probleme genau so zu optimieren, wie auch eine Population sich ihrer Umwelt anpasst. Wie bei Optimierungsproblemen sind ein Lösungsraum $\Omega$ (Die Menge der möglichen Lösungen) und eine Fitnessfunktion $f: \Omega \to \mathbb{R}$ (auch Bewertungs- oder Zielfunktion genannt). 
+Damit der EA schnell auf eine günstige Lösung trifft, muss er auf das Problem abgestimmt werden. Dafür kann man verschiedene Ver
+Ein EA 
 
 \section{Das allgemeine Verfahren eines evolutionären Algorithmus}
 
