@@ -1,5 +1,4 @@
 import logging
-from math import ceil
 from random import randint
 import numpy as np
 
@@ -42,8 +41,8 @@ class GeneticFrameDistance(FrameDistance):
     def __init__(self, clip, min_d=None, max_d=None):
         super().__init__(clip, min_d, max_d)
         self.fps = self.clip.fps
-        self.min_f = ceil(self.min_d * self.fps)
-        self.max_f = ceil(self.max_d * self.fps)
+        self.min_f = int(self.min_d * self.fps)
+        self.max_f = int(self.max_d * self.fps)
         self.frames = int(self.clip.duration * self.fps)
         self.len_g = 48
         self.len_x = 32
@@ -54,15 +53,15 @@ class GeneticFrameDistance(FrameDistance):
             logging.info("debug!")
         n1 = gene >> (self.len_g - self.len_x)
         n2 = gene & (2**self.len_y - 1)
-        f1 = n1 % (self.frames - self.max_f)
+        f1 = n1 % self.frames
         f2 = f1 + self.min_f + (n2 % (self.max_f-self.min_f))
         t1 = f1 / self.fps
         t2 = f2 / self.fps
         return [t1, t2]
 
     def fitness(self, x):
-        f = self.gene_to_frames(x)
-        return super().fitness(f)
+        x = self.gene_to_frames(x)
+        return super().fitness(x)
 
     @staticmethod
     def generate_gene():
