@@ -29,14 +29,35 @@ TODO
 \section{Kodierung}
 Um ein Optimierungsproblem mit einem evolutionären Algorithmus zu lösen, wird meist eine Übersetzung des Suchraums des Problems benötigt. Diese Übersetzung gleicht dem Genotyp-Phaenotyp-Modell aus der Genetik. Der Wert, der im Individuum gespeichert wird, ist der Genotyp. Damit lässt sich mit Hilfe der Kodierung der Phaenotyp berechnen. Der Phaenotyp stellt einen Lösungskandidaten für das Optimierungsproblem bzw. einen Wert aus dem Suchraum des Optimierungsproblem dar. Es muss also ein Alphabet erstellt werden, das durch den Kodierungsprozess einen Wert im Suchraum des Optimierungsproblems darstellt. 
 
-Das Alphabet kann dabei beliebig aufgebaut sein. Zwei Prinzipien sollten bei der Konstruktion des Alphabets beachtet werden. 
-Der Benutzer muss die Kodierung so wählen, dass kurze 
+In den frühen zeiten der evolutionären Algorithmen wurde die Genetik der Natur so weit berücksichtigt, dass man
+
+Bei der Wahl der Kodierung sollten einige Grundregeln beachtet werden. Eine davon ist das \textit{Prinzip des minimalen Alphabets} von Goldberg \cite{Golderg:1}: 
+
+\begin{quote}
+Der Nutzer sollte das kleinstmögliche Alphabet nutzen, das dem natürlichen Ausdruck des Problems entgegenkommt.
+\end{quote}
+
+Es soll also weder ein zu großes, noch ein zu kleines Alphabet verwendet werden. Implmentiert der Nutzer ein zu großes Alphabet, so kann viel Rechenzeit beim Durchforsten zu kleiner und unwichtiger Teilbereiche des Alphabets verloren werden. Ist das Alphabet hingegen zu klein, so kann es sein, dass das Alphabet bestimmte Bereiche des Problems nicht abdeckt. Das ist insbesondere dann für den EA hinderlich, wenn das zu findende Optimum nicht durch das Alphabet dargestellt werden kann. 
+
+Ein weiteres Kriterium für die gute Wahl einer Kodierung ist, dass die Entwicklung von Lösungen möglichst natürlich durch das Alphabet unterstützt wird. Damit wird erreicht, dass nah aneinander liegende Lösungen im Problem auch in ihrer kodierten Form im Individuum Ähnlichkeiten aufweisen. Auch kann dadurch der Rechenaufwand der Kodierung klein gehalten werden. 
 
 \subsection{Binäre Kodierung}
-Bei der binären Kodierung wird der Lösungsraum durch eine binäre Zahlenkette $b = \mathbb{B}^k = {0, 1}^k$ repräsentiert. 
+\label{subsec:binary_coding}
+In den Anfängen von EA wurden fast ausschließlich binäre Kodierungen verwendet \cite{Gerdes:1}. 
+Bei der binären Kodierung wird der Lösungsraum des Problems durch einen binären String $b = \mathbb{B}^k = {0, 1}^k$ repräsentiert. Mit mehr oder weniger Aufwand kann jedes Problem mit einer binären Kodierung repräsentiert werden. 
 
+Im folgenden wird beispielhaft ein Problem vorgestellt, das sich sehr leicht mit binärer Kodierung repräsentieren lässt. Man nehme an, man hat einen Raum mit $n$ Lampen $L = \left\{l_1, l_2, \cdots , l_{n-1}, l_n\right\}$ und $n$ Schaltern $S = \left\{s_1, s_2, \cdots , s_{n-1}, s_n\right\}$. Jeder Schalter $s_i$ kann an oder aus sein und bedient damit, ob die Lampe $l_i$ an oder aus ist. Ziel ist, die Helligkeit an einer bestimmten Stelle des Raumes durch das An- und Ausschalten der Schalter auf einen gegebenen Wert zu optimieren. Für die Repräsentation des Problems lässt sich offensichtlich eine binäre Kodierung verwenden: Man nehme einen binären String der Länge $n$. Die $i$-te 0 (oder 1) stellt dar, dass der Schalter $s_i$ an (oder aus) ist. 
+
+Eine weitere Verwendung der binären Kodierung ist die Darstellung vorzeichenloser Integer-Werte. In \ref{binary_to_uint} wird dargestellt, wie die Kodierung eines vorzeichenlosen Integers $x$ mit einer Länge von $l$ Bit in einen binären String $A$ erfolgen kann. 
+
+\begin{gather}\label{eq:binary_to_uint}
+A = a_l a_{l-1} \dots a_2 a_1,\;\; a = \left\{0, 1\right\} \; \forall a \in A \nonumber \\
+x = \sum\limits_{i=1}^n a_i \cdot 2^{i-1}
+\end{gather}
+
+Auch die Darstellung reeller Zahlen lässt sich durch binäre Kodierung realisieren. 
 \subsection{Relle Kodierung}
-Stub
+Werden die Schalter aus dem Beispiel \ref{subsec:binary_coding} durch stufenlose Dimmer ausgetauscht, so kann nicht mehr nur ein Bit pro Schalter
 
 \section{Fitnessfunktion}
 Stub
