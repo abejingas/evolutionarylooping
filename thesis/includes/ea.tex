@@ -48,15 +48,18 @@ Bei der binären Kodierung wird der Lösungsraum des Problems durch einen binär
 
 Im folgenden wird beispielhaft ein Problem vorgestellt, das sich sehr leicht mit binärer Kodierung repräsentieren lässt. Man nehme an, man hat einen Raum mit $n$ Lampen $L = \left\{l_1, l_2, \cdots , l_{n-1}, l_n\right\}$ und $n$ Schaltern $S = \left\{s_1, s_2, \cdots , s_{n-1}, s_n\right\}$. Jeder Schalter $s_i$ kann an oder aus sein und bedient damit, ob die Lampe $l_i$ an oder aus ist. Ziel ist, die Helligkeit an einer bestimmten Stelle des Raumes durch das An- und Ausschalten der Schalter auf einen gegebenen Wert zu optimieren. Für die Repräsentation des Problems lässt sich offensichtlich eine binäre Kodierung verwenden: Man nehme einen binären String der Länge $n$. Die $i$-te 0 (oder 1) stellt dar, dass der Schalter $s_i$ an (oder aus) ist. 
 
-Eine weitere Verwendung der binären Kodierung ist die Darstellung vorzeichenloser Integer-Werte. In \ref{binary_to_uint} wird dargestellt, wie die Kodierung eines vorzeichenlosen Integers $x$ mit einer Länge von $l$ Bit in einen binären String $A$ erfolgen kann. 
+Eine weitere Verwendung der binären Kodierung ist die Darstellung vorzeichenloser Integer-Werte. In \ref{binary_to_uint} wird dargestellt, wie die Kodierung eines vorzeichenlosen Integers $x$ mit einer Länge von $l$ Bit in einen binären String $A$ erfolgen kann. Werden für das Problem Integer-Werte mit Vorzeichen benötigt, so kann ein weiteres Bit als Vorzeichenbit verwendet werden. 
 
 \begin{gather}\label{eq:binary_to_uint}
 A = a_l a_{l-1} \dots a_2 a_1,\;\; a = \left\{0, 1\right\} \; \forall a \in A \nonumber \\
 x = \sum\limits_{i=1}^n a_i \cdot 2^{i-1}
 \end{gather}
 
-Auch die Darstellung reeller Zahlen lässt sich durch binäre Kodierung realisieren. 
-\subsection{Relle Kodierung}
+Komplexer wird die Binärkodierung erst, wenn reelle Zahlen statt ganzen Zahlen repräsentiert werden müssen, oder für das Problem mehrere Parameter optimiert werden müssen. 
+
+Werden die Schalter aus dem Beispiel oben durch stufenlose Dimmer ausgetauscht, muss die Kodierung für das Problem angepasst werden. Die Dimmer akzeptieren jeden reellen Zahlenwert zwischen 0 und 1 als Zustand. Jedoch lässt sich eine reelle Zahl nur mit einer begrenzten Genauigkeit darstellen. 
+
+\subsection{Kodierung mit Fließkommazahlen}
 Werden die Schalter aus dem Beispiel \ref{subsec:binary_coding} durch stufenlose Dimmer ausgetauscht, so kann nicht mehr nur ein Bit pro Schalter
 
 \section{Fitnessfunktion}
@@ -85,3 +88,33 @@ Stub
 
 \section{Terminierungskriterien}
 Stub
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

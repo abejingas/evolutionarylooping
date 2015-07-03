@@ -56,7 +56,7 @@ class ParentSelector(Selector):
         debug = zip(generation.individuals, p)
         for i, p in debug:
             print("{0} -> {1}%".format(str(i), 100*p))
-        
+
         p_cum = np.cumsum(p)[:-1]
 
         mating_pool = GeneticGeneration()

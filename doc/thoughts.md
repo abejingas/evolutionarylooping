@@ -33,6 +33,7 @@ Aus dem Buch: Gerdes, I.; Klawonn, F.; Kruse, R: Evolutionare Algorithmen. 1. Au
     - etc.
 - Mutation
     - Zufällige Modifizierung eines Individuums
+    - Wieso braucht man überhaupt Mutation?
     - Mutationsrate und Mutationsdruck davon abhängig, wie nah die Kodierung des Problemes am eigentlichen Problem ist. 
     - Addition eines zufälligen Werts (normal verteilt)
     - Zufällige Änderung / Invertierung / Verschiebung von Bits
@@ -44,3 +45,4 @@ Aus dem Buch: Gerdes, I.; Klawonn, F.; Kruse, R: Evolutionare Algorithmen. 1. Au
     - Zeit
     - Gütekriterium erfüllt
     - Keine Verbesserung in den letzten Generationen
+- Populationsgröße?
