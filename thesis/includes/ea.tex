@@ -24,6 +24,10 @@ Im folgenden werden die Terminologie von evolutionären Algorithmen sowie die ve
 
 \section{Terminologie}
 % TODO
+% Problem: P
+% Fitnessfunktion: f: Ω -> R
+% Suchraum des Problems: Ω
+% Kodierter Suchraum: X
 TODO
 
 \section{Kodierung}
@@ -48,22 +52,48 @@ Bei der binären Kodierung wird der Lösungsraum des Problems durch einen binär
 
 Im folgenden wird beispielhaft ein Problem vorgestellt, das sich sehr leicht mit binärer Kodierung repräsentieren lässt. Man nehme an, man hat einen Raum mit $n$ Lampen $L = \left\{l_1, l_2, \cdots , l_{n-1}, l_n\right\}$ und $n$ Schaltern $S = \left\{s_1, s_2, \cdots , s_{n-1}, s_n\right\}$. Jeder Schalter $s_i$ kann an oder aus sein und bedient damit, ob die Lampe $l_i$ an oder aus ist. Ziel ist, die Helligkeit an einer bestimmten Stelle des Raumes durch das An- und Ausschalten der Schalter auf einen gegebenen Wert zu optimieren. Für die Repräsentation des Problems lässt sich offensichtlich eine binäre Kodierung verwenden: Man nehme einen binären String der Länge $n$. Die $i$-te 0 (oder 1) stellt dar, dass der Schalter $s_i$ an (oder aus) ist. 
 
-Eine weitere Verwendung der binären Kodierung ist die Darstellung vorzeichenloser Integer-Werte. In \ref{binary_to_uint} wird dargestellt, wie die Kodierung eines vorzeichenlosen Integers $x$ mit einer Länge von $l$ Bit in einen binären String $A$ erfolgen kann. Werden für das Problem Integer-Werte mit Vorzeichen benötigt, so kann ein weiteres Bit als Vorzeichenbit verwendet werden. 
+Eine weitere Verwendung der binären Kodierung ist die Darstellung vorzeichenloser Integer-Werte. In \ref{eq:binary_to_uint} wird dargestellt, wie die Kodierung eines vorzeichenlosen Integers $x$ mit einer Länge von $l$ Bit in einen binären String $A$ erfolgen kann. Werden für das Problem Integer-Werte mit Vorzeichen benötigt, so kann ein weiteres Bit als Vorzeichenbit verwendet werden. 
 
-\begin{gather}\label{eq:binary_to_uint}
-A = a_l a_{l-1} \dots a_2 a_1,\;\; a = \left\{0, 1\right\} \; \forall a \in A \nonumber \\
-x = \sum\limits_{i=1}^n a_i \cdot 2^{i-1}
+\begin{gather}
+A = A_1 A_2 \dots A_{n-1} A_n \in \mathbb{B} \nonumber \\
+\label{eq:binary_to_uint}
+x = \sum\limits_{i=1}^n A_i \cdot 2^{n-i}
 \end{gather}
 
-Komplexer wird die Binärkodierung erst, wenn reelle Zahlen statt ganzen Zahlen repräsentiert werden müssen, oder für das Problem mehrere Parameter optimiert werden müssen. 
+Für viele Probleme werden mehrere Parameter benötigt. Damit eine Folge von Parametern binär kodiert werden kann, muss für jeden Parameter eine feste Länge bekannt sein. Liegt dies vor, können die einzelnen kodierten Werte im binären String aneinandergereiht werden. \ref{eq:multiple_uints} zeigt auf, wie die Kodierung von $m$ vorzeichenlosen Integer-Werten mit je $n$ Bit erfolgen kann. 
 
-Werden die Schalter aus dem Beispiel oben durch stufenlose Dimmer ausgetauscht, muss die Kodierung für das Problem angepasst werden. Die Dimmer akzeptieren jeden reellen Zahlenwert zwischen 0 und 1 als Zustand. Jedoch lässt sich eine reelle Zahl nur mit einer begrenzten Genauigkeit darstellen. 
+\begin{gather}
+A = A_1 A_2 \dots A_{m \cdot n-1} A_{m \cdot n} \in \mathbb{B} \nonumber \\
+\label{eq:multiple_uints}
+x_k = \sum\limits_{i=1}^n A_{n(k-1)+i} \cdot 2^{n-i}
+\end{gather}
+
+Werden die Schalter im Beispiel oben durch Dimmer mit $k$ Stufen ausgetauscht, so lässt sich die in \ref{eq:multiple_uints} dargestellte Kodierung verwenden. $m$ ist dabei die Anzahl der Dimmer bzw. Lampen. Die Länge -- also die Anzahl der Bits -- der einzelnen vorzeichenlosen Integerwerte $n$ muss so gewählt werden, dass alle Dimmerstufen $k$ dargestellt werden können ($k \le 2^n$). 
+
+% TODO relle Zahlen?
+%Man nehme an, dass die Schalter im Beispiel durch stufenlose Dimmer ausgetauscht werden. Die Dimmer können nun also jeden reellen Zahlenwert zwischen 0 -- zugehörige Lampe ist aus -- und 1 -- zugehörige Lampe leuchtet mit maximaler Helligkeit -- annehmen. Hier wird man allerdings vor ein Problem gestellt: Es gibt unendlich viele reelle Zahlen zwischen 0 und 1. Um die reelle Zahl also exakt binär zu kodieren, muss die binäre Zahl unendlich viele Stellen haben. Dies ist mit einem Computer nicht möglich: Es gibt keinen Computer mit einem Speicher, der unendlich Bits aufnehmen kann. Stattdessen 
 
 \subsection{Kodierung mit Fließkommazahlen}
-Werden die Schalter aus dem Beispiel \ref{subsec:binary_coding} durch stufenlose Dimmer ausgetauscht, so kann nicht mehr nur ein Bit pro Schalter
+Man nehme an, die Schalter aus dem Beispiel im Abschnitt \ref{subsec:binary_coding} werden durch stufenlose Dimmer ausgetauscht. Die Dimmer können also jeden reellen Zahlenwert zwischen 0 -- zugehörige Lampe ist aus -- und 1 -- zugehörige Lampe leuchtet mit maximaler Helligkeit -- annehmen. 
+Werden die Schalter aus dem Beispiel \ref{subsec:binary_coding} durch stufenlose Dimmer ausgetauscht, 
 
 \section{Fitnessfunktion}
-Stub
+Die Fitnessfunktion oder Zielfunktion bestimmt, wie "`fit"' bzw. wie gut ein Individuum ist und beeinflusst damit direkt die Überlebens- und Fortpflanzungschancen der Individuen. Es handelt sich dabei um  eine Abbildung, die jedem Element des Suchraums des Problems eine reelle Zahl als Bewertung zuweist. Dabei kann selbst entschieden werden, ob das fitteste Individuum den größten oder den kleinsten Fitnesswert haben soll, also, ob der Wert der Fitnessfunktion maximiert oder minimiert werden soll. Für Selektionsverfahren, die die Selektionswahrscheinlichkeit anhand der Fitness der Individuen bestimmen, stellen negative Fitnesswerte ein Problem dar, da auch die Selektionswahrscheinlichkeit negativ wird. Daher ist es üblich, die Fitnessfunktion so zu konstuieren, dass sie auf alle positive reelle Zahlen abbildet:
+
+\begin{equation}
+f: \Omega \to \mathbb{R}
+\end{equation}
+
+Die Fitness eines Individuums ist meistens relativ. Das bedeutet, die Fitness einzelnen Individuums sagt nichts über seine tatsächliche Qualität aus. Mit der Fitness lassen sich lediglich die Individuen unter sich vergleichen. 
+
+Man betrachte folgendes beispielhafte Aufgabe: Es soll die Nullstelle der Funktion $g: \mathbb{R}^n \to \mathbb{R}$ durch einen EA bestimmt werden. Dafür ist es nötig, 
+
+Mit der Fitnessfunktion lassen sich viele Probleme beschreiben. Beispielsweise ist es auch möglich, die Nullstelle einer Funktion zu suchen. 
+
+Der EA ist nur in der Lage, das globale Minimum oder Maximum einer Funktion zu suchen. Um das gegebene Problem P also zu optimieren, muss eine Funktion definiert werden, die das Problem in ein Minimierungs- oder Maximierungsproblem 
+Die Fitnessfunktion oder Zielfunktion bestimmt wie "`fit"' bzw. wie gut ein Individuum ist und beeinflusst damit direkt die Überlebens- und Fortpflanzungschancen der Individuen. Die Fitness eines Individuums wird dabei meist als reelle Zahl angegeben. 
+
+Die Fitnessfunktion wird dabei so gewählt, dass das zu optimierende Problem in ein Minimierungs- oder Maximierungsproblem umgewandelt wird. Die Mechanismen des EA sind nur in der Lage, das globale Minimum oder das globale Maximum der Fitnessfunktion zu finden. Die Fitnessfunktion ist also die einzige Verbindung des Algorithmus zu dem Problem. 
 
 \section{Selektion}
 Stub

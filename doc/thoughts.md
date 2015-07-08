@@ -18,7 +18,13 @@ Aus dem Buch: Gerdes, I.; Klawonn, F.; Kruse, R: Evolutionare Algorithmen. 1. Au
     - etc.
 - Kodierung
     - Binär
-    - Reell
+        - switches
+        - uint
+        - int
+        - multiple ints
+        - real numbers
+    - Fließkomma
+        - diskussion über distanz 
 - Fitnessfunktion
     - Darstellung der Güte als reelle Zahl
     - Minimierung / Maximierung

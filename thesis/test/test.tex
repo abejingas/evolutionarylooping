@@ -6,9 +6,21 @@
 \begin{document}
 \section{Example Section}
 This is an example section. Please see it as such. Lorem ipsum. 
-\begin{gather}\label{eq:binary_to_uint}
-A = a_l a_{l-1} \dots a_2 a_1,\;\; a = \left\{0, 1\right\} \; \forall a \in A \nonumber \\
-x = \sum\limits_{i=1}^n a_i \cdot 2^{i-1}
+
+\begin{gather}
+A = A_1 A_2 \dots A_{n-1} A_n \in \mathbb{B} \nonumber \\
+\label{eq:binary_to_uint}
+x = \sum\limits_{i=1}^n A_i \cdot 2^{n-i}
 \end{gather}
-As you can clearly see in \ref{eq:binary_to_uint}, lorem ipsum a very very very big lot. Really. Believe me. Tom always says it is that way and he showed me using reveal.ja, so he is to be trusted. 
+
+As you can clearly see in \ref{eq:binary_to_uint}, lorem ipsum a very very very big lot. Really. Believe me. Tom always says it is that way and he showed me using reveal.ja, so he is to be trusted. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc sed urna sit amet nibh hendrerit pellentesque. Nunc condimentum nisi sit amet nibh finibus, a cursus nisl euismod. Curabitur eu nibh vitae massa tempor semper ac id lorem. Duis quis pharetra tellus, nec efficitur odio. Fusce mattis dapibus laoreet. Aenean tempor eros ut leo feugiat fringilla. Proin tempus, lectus sed interdum consectetur, risus magna venenatis libero, semper lacinia velit tortor vitae diam. Donec accumsan convallis sem. Etiam massa lectus, tempor tincidunt magna eget, dapibus suscipit lorem. Mauris suscipit euismod augue ac imperdiet. Nam quis ipsum ac nisl tempus aliquam. Vestibulum id.
+
+\begin{gather}
+A = A_1 A_2 \dots A_{m \cdot n-1} A_{m \cdot n} \in \mathbb{B} \nonumber \\
+\label{eq:multiple_uints}
+x_k = \sum\limits_{i=1}^n A_{n(k-1)+i} \cdot 2^{n-i}
+\end{gather}
+
+Lorem ipsum dolor sit amet, \ref{eq:multiple_uints} consectetur adipiscing elit. Nunc sed urna sit amet nibh hendrerit pellentesque. Nunc condimentum nisi sit amet nibh finibus, a cursus nisl euismod. Curabitur eu nibh vitae massa tempor semper ac id lorem. Duis quis pharetra tellus, nec efficitur odio. Fusce mattis dapibus laoreet. Aenean tempor eros ut leo feugiat fringilla. Proin tempus, lectus sed interdum consectetur, risus magna venenatis libero, semper lacinia velit tortor vitae diam. Donec accumsan convallis sem. Etiam massa lectus, tempor tincidunt magna eget, dapibus suscipit lorem. Mauris suscipit euismod augue ac imperdiet. Nam quis ipsum ac nisl tempus aliquam. Vestibulum id.
+
 \end{document}
