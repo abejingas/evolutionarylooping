@@ -78,26 +78,29 @@ Man nehme an, die Schalter aus dem Beispiel im Abschnitt \ref{subsec:binary_codi
 Werden die Schalter aus dem Beispiel \ref{subsec:binary_coding} durch stufenlose Dimmer ausgetauscht, 
 
 \section{Fitnessfunktion}
-Die Fitnessfunktion oder Zielfunktion bestimmt, wie "`fit"' bzw. wie gut ein Individuum ist und beeinflusst damit direkt die Überlebens- und Fortpflanzungschancen der Individuen. Es handelt sich dabei um  eine Abbildung, die jedem Element des Suchraums des Problems eine reelle Zahl als Bewertung zuweist. Dabei kann selbst entschieden werden, ob das fitteste Individuum den größten oder den kleinsten Fitnesswert haben soll, also, ob der Wert der Fitnessfunktion maximiert oder minimiert werden soll. Für Selektionsverfahren, die die Selektionswahrscheinlichkeit anhand der Fitness der Individuen bestimmen, stellen negative Fitnesswerte ein Problem dar, da auch die Selektionswahrscheinlichkeit negativ wird. Daher ist es üblich, die Fitnessfunktion so zu konstuieren, dass sie auf alle positive reelle Zahlen abbildet:
+Die Fitnessfunktion oder Zielfunktion bestimmt, wie "`fit"' bzw. wie gut ein Individuum ist und beeinflusst damit direkt die Überlebens- und Fortpflanzungschancen der Individuen. Es handelt sich dabei um  eine Abbildung, die jedem Element des Suchraums des Problems eine reelle Zahl als Bewertung zuweist. Dabei kann selbst entschieden werden, ob das fitteste Individuum den größten oder den kleinsten Fitnesswert haben soll, also, ob der Wert der Fitnessfunktion maximiert oder minimiert werden soll. Für Selektionsverfahren, die die Selektionswahrscheinlichkeit anhand der Fitness der Individuen bestimmen, stellen negative Fitnesswerte ein Problem dar, da auch die Selektionswahrscheinlichkeit negativ wird. Daher ist es üblich, die Fitnessfunktion so zu konstruieren, dass sie auf alle positive reelle Zahlen abbildet:
 
 \begin{equation}
-f: \Omega \to \mathbb{R}
+f: \Omega \to \mathbb{R}^+
 \end{equation}
 
 Die Fitness eines Individuums ist meistens relativ. Das bedeutet, die Fitness einzelnen Individuums sagt nichts über seine tatsächliche Qualität aus. Mit der Fitness lassen sich lediglich die Individuen unter sich vergleichen. 
 
-Man betrachte folgendes beispielhafte Aufgabe: Es soll die Nullstelle der Funktion $g: \mathbb{R}^n \to \mathbb{R}$ durch einen EA bestimmt werden. Dafür kann folgende Fitnessfunktion aufgestellt werden: 
+% Man betrachte folgendes Beispiel: Es soll die Nullstelle der Funktion $g: \mathbb{R}^n \to \mathbb{R}$ durch einen EA bestimmt werden. Dies lässt sich einfach in ein Minimierungsproblem umwandeln, sodass das Individuum, das am nächsten an einer Nullstelle ist, den kleinsten Fitness-Wert hat. Dafür muss die gegebene Funktion $g$ in der Fitness-Funktion quadriert werden. 
 
-\begin{equation}
-f(\mathbf{x}) = g(\mathbf{x})^2, x \in \mathbb{R}^n
-\end{equation}
+% \begin{equation}
+% \label{eq:fitness_example_1}
+% f(\mathbf{x}) = g(\mathbf{x})^2, x \in \mathbb{R}^n
+% \end{equation}
 
-Mit der Fitnessfunktion lassen sich viele Probleme beschreiben. Beispielsweise ist es auch möglich, die Nullstelle einer Funktion zu suchen. 
+% Dadurch bewegt sich der Wertebereich von $f$ in $\mathbb{R}_0^+$. Das bedeutet, der kleinste Wert, das globale Minimum von $f$ kann nicht kleiner als $0$ sein. Dieser Wert von $f$ wird genau an der Stelle erreicht, an der $g$ eine Nullstelle hat. Bei einer Suche nach dem globalen Minimum von $f$ wird also nach den Nullstellen von $g$ gesucht.
 
-Der EA ist nur in der Lage, das globale Minimum oder Maximum einer Funktion zu suchen. Um das gegebene Problem P also zu optimieren, muss eine Funktion definiert werden, die das Problem in ein Minimierungs- oder Maximierungsproblem 
-Die Fitnessfunktion oder Zielfunktion bestimmt wie "`fit"' bzw. wie gut ein Individuum ist und beeinflusst damit direkt die Überlebens- und Fortpflanzungschancen der Individuen. Die Fitness eines Individuums wird dabei meist als reelle Zahl angegeben. 
+% Mit der Fitnessfunktion lassen sich viele Probleme beschreiben. Beispielsweise ist es auch möglich, die Nullstelle einer Funktion zu suchen. 
 
-Die Fitnessfunktion wird dabei so gewählt, dass das zu optimierende Problem in ein Minimierungs- oder Maximierungsproblem umgewandelt wird. Die Mechanismen des EA sind nur in der Lage, das globale Minimum oder das globale Maximum der Fitnessfunktion zu finden. Die Fitnessfunktion ist also die einzige Verbindung des Algorithmus zu dem Problem. 
+% Der EA ist nur in der Lage, das globale Minimum oder Maximum einer Funktion zu suchen. Um das gegebene Problem P also zu optimieren, muss eine Funktion definiert werden, die das Problem in ein Minimierungs- oder Maximierungsproblem 
+% Die Fitnessfunktion oder Zielfunktion bestimmt wie "`fit"' bzw. wie gut ein Individuum ist und beeinflusst damit direkt die Überlebens- und Fortpflanzungschancen der Individuen. Die Fitness eines Individuums wird dabei meist als reelle Zahl angegeben. 
+
+% Die Fitnessfunktion wird dabei so gewählt, dass das zu optimierende Problem in ein Minimierungs- oder Maximierungsproblem umgewandelt wird. Die Mechanismen des EA sind nur in der Lage, das globale Minimum oder das globale Maximum der Fitnessfunktion zu finden. Die Fitnessfunktion ist also die einzige Verbindung des Algorithmus zu dem Problem. 
 
 \section{Selektion}
 Stub
@@ -113,6 +116,8 @@ Stub
 
 \subsection{Roulette-Selektion}
 Stub
+
+\section{Rekombination}
 
 \section{Mutation}
 Stub

@@ -24,7 +24,7 @@ Aus dem Buch: Gerdes, I.; Klawonn, F.; Kruse, R: Evolutionare Algorithmen. 1. Au
         - multiple ints
         - real numbers
     - Fließkomma
-        - diskussion über distanz 
+        - diskussion über Distanz 
 - Fitnessfunktion
     - Darstellung der Güte als reelle Zahl
     - Minimierung / Maximierung
