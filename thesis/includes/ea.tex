@@ -86,6 +86,7 @@ f: \Omega \to \mathbb{R}^+
 
 Die Fitness eines Individuums ist meistens relativ. Das bedeutet, die Fitness einzelnen Individuums sagt nichts über seine tatsächliche Qualität aus. Mit der Fitness lassen sich lediglich die Individuen unter sich vergleichen. 
 
+% Keep?
 % Man betrachte folgendes Beispiel: Es soll die Nullstelle der Funktion $g: \mathbb{R}^n \to \mathbb{R}$ durch einen EA bestimmt werden. Dies lässt sich einfach in ein Minimierungsproblem umwandeln, sodass das Individuum, das am nächsten an einer Nullstelle ist, den kleinsten Fitness-Wert hat. Dafür muss die gegebene Funktion $g$ in der Fitness-Funktion quadriert werden. 
 
 % \begin{equation}
@@ -104,27 +105,47 @@ Die Fitness eines Individuums ist meistens relativ. Das bedeutet, die Fitness ei
 
 \section{Selektion}
 Ähnlich wie in der Natur werden die unangepassten, unfitten Individuen aussortiert, sodass sie sich nicht mehr fortpflanzen können, während die angepassten, fitten Individuen ihre Gene besonders Gut an die nächste Generation der Population weitergeben können. Bei evolutionären Algorithmen begrenzt man sich auf zwei Punkte für jede neue Generation, in denen eine Selekiton simuliert wird. 
-Die Eltern-Selektion wählt die Individuen aus, die sich paaren sollen, um die nächste Generation an Individuen zu produzieren. Die Umwelt-Selektion wählt nach der Paarung die überlebenden Individuen aus. 
+Die \textit{Eltern-Selektion} wählt die Individuen aus, die sich paaren sollen, um die nächste Generation an Individuen zu produzieren. Die \textit{Umwelt-Selektion} wählt nach der Paarung die überlebenden Individuen aus. 
 
-Weiterhin untscheidet man zwischen deterministischer und non-deterministischer Selektion, also, ob über das Leben der Individuen mit oder ohne Zufall entschieden wird. Hierbei stellt die non-deterministische (zufällige) Selektion eine Annäherung an die Natur dar: Genauso wie im Beispiel am Anfang des Kapitels auch dumme und langsame Hasen manchmal glücklich dem Fuchs entwischen, kann bei der non-deterministischen Selektion ein Individuum trotz seiner schlechten Fitness überleben. 
+% Keep?
+% Weiterhin untscheidet man zwischen \textit{deterministischer} und \texit{probabilistischer} Selektion. Das Resultat einer \textit{deterministischen} Selektion ist dabei immer im Vorhinein bestimmbar; Eine \textit{probabilistische} Selektion hingegen wählt die Individuen mit zufälligen Entscheidungen aus und ist damit nicht im Vorhinein bestimmbar. Die \textit{probabilistische} Selektion ist hierbei an die natürliche Selektion angelehnt: Genauso wie im Beispiel am Anfang des Kapitels auch ein dummer oder langsamer Hase unter bestimmten Umständen dem Fuchs entwischen kann, ist es bei der non-deterministischen Selektion möglich, dass ein Individuum trotz seiner schlechteren Fitness überlebt. 
 
-Bei einigen Selektionsverfahren kann es passieren, dass ein Individuum dupliziert wird. Hier wird das in der Natur auftretende Szenario eines Individuums, das sich mehr als ein Mal paart, dargestellt. Diese Selektionsverfahren sind also speziell für die Eltern-Selektion vorgesehen. Die duplikative Auswahl der besseren Individuen bedeutet, dass sie ihre Gene besser verbreiten können als die Individuen die nur ein Mal oder gar nicht ausgewählt werden. Da die Umweltselektion direkt beeinflusst, welches Individuum für die nächste Generation behalten und welches aussortiert wird, eignet sich dieses Verfahren nicht für die Umwelt-Selektion. Meist ist die Populationsgröße fest definiert. Je mehr Duplikate eines Individuums in der Population existieren, desto höher ist die Wahrscheinlichkeit, dass sich zwei Duplikate paaren. Da diese beiden Individuum identische Gene haben, hat auch ihr Kind die identischen Gene. Handelt es sich bei den Duplikaten um ein besonders fittes Individuum, so kann es nach einigen Generationen dazu kommen, dass alle Individuen der Population die gleichen Gene haben. Ab diesem Punkt kann sich der Algorithmus nicht weiterentwickeln, da sich bei jedem Paarungsprozess zwei Individuen mit den gleichen Genen finden und ein Kind mit den gleichen Genen und der gleichen Fitness erzeugt, wie alle anderen. Es ist also höchstens durch die Mutation noch möglich, ein Individuum mit einer besseren Fitness zu finden, aber die Wahrscheinlichkeit dafür ist sehr gering. 
+% Bei einigen Selektionsverfahren kann es passieren, dass ein Individuum dupliziert wird. Hier wird das in der Natur auftretende Szenario eines Individuums, das sich mehr als ein Mal paart, dargestellt. Diese Selektionsverfahren sind also speziell für die Eltern-Selektion vorgesehen. Die duplikative Auswahl der besseren Individuen bedeutet, dass sie ihre Gene besser verbreiten können als die Individuen die nur ein Mal oder gar nicht ausgewählt werden. Da die Umweltselektion direkt beeinflusst, welches Individuum für die nächste Generation behalten und welches aussortiert wird, eignet sich dieses Verfahren nicht für die Umwelt-Selektion. Meist ist die Populationsgröße fest definiert. Je mehr Duplikate eines Individuums in der Population existieren, desto höher ist die Wahrscheinlichkeit, dass sich zwei Duplikate paaren. Da diese beiden Individuum identische Gene haben, hat auch ihr Kind die identischen Gene. Handelt es sich bei den Duplikaten um ein besonders fittes Individuum, so kann es nach einigen Generationen dazu kommen, dass alle Individuen der Population die gleichen Gene haben. Ab diesem Punkt kann sich der Algorithmus nicht weiterentwickeln, da sich bei jedem Paarungsprozess zwei Individuen mit den gleichen Genen finden und ein Kind mit den gleichen Genen und der gleichen Fitness erzeugt, wie alle anderen. Es ist also höchstens durch die Mutation noch möglich, ein Individuum mit einer besseren Fitness zu finden, aber die Wahrscheinlichkeit dafür ist sehr gering. 
 
-Im Folgenden werden einige deterministische und non-deterministische Selektionsverfahren vorgestellt, wovon einige Verfahren duplikatfrei und manche duplikathaltig sind und sich damit entweder für die Umwelt-Selektion oder für die Eltern-Selektion eignen. 
+% TODO überleitender Abschnitt
 
-\subsection{Plus-Selektion}
-Stub
+\subsection{Varianten der Umwelt-Selektion}
+Die Umwelt-Selektion wird durchgeführt, nachdem aus der Elterngeneration mit $\mu$ Eltern die Kindergeneration mit $\lambda$ Kindern erzeugt worden ist. Wichtig dabei ist, dass das Selektionsverfahren \textit{duplikatfrei} ist, also dass ein Individuum sich im Prozess der Selektion nicht vermehrfacht. Ein Duplikat vermindert die Diversität der Population. Ziel eines \acs{EA} ist, den Suchraum des Problems möglichst flächendeckend nach dem globalen Optimum abzusuchen. Um dies zu erreichen, benötigt es allerdings eine hohe Diversität. Im folgenden werden einige ausgewählte Verfahren für die Umwelt-Selektion vorgestellt. 
 
-\subsection{Komma-Selektion}
-Stub
+\paragraph{Plus-Selektion}
+Die \textit{Plus-Selektion} oder auch $(\mu + \lambda)$\textit{-Selektion} ist ein deterministisches Selektionsverfahren. Bei diesem Verfahren werden aus beiden Generationen, der Eltern- und der Kindergeneration, die besten Individuen ausgewählt. Alle anderen Individuen werden gelöscht. 
 
-\subsection{Turnier-Selektion}
-Stub
+\paragraph{Komma-Selektion}
+Die \textit{Komma-Selektion} oder auch $(\mu, \lambda)$\textit{-Selektion} ist ebenfalls ein deterministisches Selektionsverfahren. Der Unterschied zwischen diesen beiden Verfahren ist, dass die Komma-Selektion nur Individuen aus der Kindergeneration auswählt. Damit die Population eine gleichbleibende Größe $popsize$ haben kann, müssen für dieses Selektionsverfahren bei einer Anzahl von $\mu$ Eltern-Individuen mindestens $\lambda \ge \mu$ Kinder-Individuen erzeugt worden sein. 
 
-\subsection{Roulette-Selektion}
-Stub
+\paragraph{Q-stufige zweifache Turnierselektion}
+Bei diesem Selektionsverfahren bestreitet jedes Individuum einen Wettkampf gegen $Q$ andere, zufällig ausgewählte Individuen $J = {j_1, \cdots, j_Q}$. Hat das Individuum $i$ eine bessere Fitness als das andere Individuum, so erhält es einen Punkt. Abschließend werden die Individuen, die in dem Wettkampf am meisten Punkte erzielt haben, selektiert. Dieses Verfahren ist \textit{probabilistisch}, was bedeutet, dass nicht garantiert werden kann, ob ein bestimmtes Individuum ausgewählt oder nicht ausgewählt wird. Diese Selektion kann entweder wie die Plus-Selektion sowohl auf die Eltern- als auch die Kinder-Generation oder wie die Komma-Selektion nur auf die Kinder-Generation angewandt werden. 
+
+\subsection{Varianten der Eltern-Selektion}
+In der Natur ist es üblich, dass sich die besser an die Umwelt angepassten Individuen öfter paaren, als die weniger angepassten Individuen. Dies kann unter anderem an ihrem Aussehen, ihrer Fertilität oder an ihrer Lebenslänge liegen. Gleichermaßen kann bei \acs{EA} anhand der Fitness entschieden werden, welches Individuum sich öfter und welches sich nicht reproduzieren darf. Dabei gilt: Jedes Mal, wenn ein Individuum selektiert wird, darf es sich mit einem anderen Indivduum paaren. Damit ein besonders fittes Individuum sich auch mehrere Male reproduzieren darf, muss die Erzeugung von Duplikaten bei der Eltern-Selektion gestattet sein. Im folgenden werden zwei ausgewählte Verfahren für die Eltern-Selektion vorgestellt. 
+
+\paragraph{Roulette-Selektion}
+Die \textit{Roulette-Selektion} (auch \textit{fitnessproportionale Selektion}) ist eine probabilistische Selektionsmethode. Es wird zunächst nach folgender Formel die Selektionswahrscheinlichkeit $P(I_k)$ jedes Individuums bestimmt: 
+\begin{equation}
+P(I_k) = \frac{f(I_k)}{\sum\limits_{j=1}^n f(I_j)},\;\;1 \le k \le n,
+\end{equation}
+wenn ein möglichst großer Fitness-Wert angestrebt wird, 
+\begin{equation}
+P(I_k) = \frac{f(I_k)^{-1}}{\sum\limits_{j=1}^n f(I_j)^{-1}},\;\;1 \le k \le n,
+\end{equation}
+wenn ein möglichst kleiner Fitness-Wert angestrebt wird, wobei $I$ die Menge aller zu selektierenden Individuen, $f(I_k)$ die Fitness des $k$-ten Individuums aus $I$ und $n$ die Anzahl der Individuen in $I$ ist. 
+Die Individuen werden nun Fächern auf einem Roulette-Rad zugewiesen. Die Größe der Fächer ist dabei proportional zu der Selektionswahrscheinlichkeit des jeweiligen Individuums. Anschließend wird das Roulette-Rad gedreht und die Kugel eingeworfen. Das Individuum, in dessen Fach die Kugel fällt, wird selektiert. Dieser Prozess wird so oft wiederholt, bis die gewünschte Zahl an Individuen selektiert worden ist. 
+
+\paragraph{Q-fache Turnierselektion}
+Die \textit{Q-fache Turnierselektion} ist das Verfahren, auf dem die \textit{Q-stufige zweifache Turnierselektion} basiert. Das Individuum mit der besten Fitness gewinnt das Turnier und ist damit selektiert. Da Duplikate bei der Eltern-Selektion nicht verboten, sondern erwünscht sind, muss im Unterschied zur Q-stufigen zweifachen Turnierselektion keine Rangfolge für die Individuen bestimmt werden. Es werden so viele Turniere gespielt, wie Individuen selektiert werden sollen. 
 
 \section{Rekombination}
+Stub
 
 \section{Mutation}
 Stub
